@@ -8,13 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		E3E2DCF21C4C46F3006B3767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */; };
-		E3E2DCF41C4C46F3006B3767 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF31C4C46F3006B3767 /* ViewController.swift */; };
-		E3E2DCF71C4C46F3006B3767 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E2DCF51C4C46F3006B3767 /* Main.storyboard */; };
 		E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */; };
-		E3E2DCFC1C4C46F3006B3767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E2DCFB1C4C46F3006B3767 /* Assets.xcassets */; };
-		E3E2DCFF1C4C46F3006B3767 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E2DCFD1C4C46F3006B3767 /* LaunchScreen.storyboard */; };
 		E3E2DD0A1C4C46F3006B3767 /* iMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD091C4C46F3006B3767 /* iMoneyTests.swift */; };
 		E3E2DD151C4C46F3006B3767 /* iMoneyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD141C4C46F3006B3767 /* iMoneyUITests.swift */; };
+		E3E2DD321C4C471E006B3767 /* SwiftColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD221C4C471E006B3767 /* SwiftColors.swift */; };
+		E3E2DD341C4C471E006B3767 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E2DD251C4C471E006B3767 /* LaunchScreen.xib */; };
+		E3E2DD351C4C471E006B3767 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E2DD271C4C471E006B3767 /* Main.storyboard */; };
+		E3E2DD361C4C471E006B3767 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD291C4C471E006B3767 /* Common.swift */; };
+		E3E2DD371C4C471E006B3767 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD2A1C4C471E006B3767 /* HomeViewController.swift */; };
+		E3E2DD381C4C471E006B3767 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E2DD2B1C4C471E006B3767 /* Images.xcassets */; };
+		E3E2DD3A1C4C471E006B3767 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD2D1C4C471E006B3767 /* LeftViewController.swift */; };
+		E3E2DD3C1C4C471E006B3767 /* MainTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3E2DD2F1C4C471E006B3767 /* MainTabBarController.xib */; };
+		E3E2DD3D1C4C471E006B3767 /* OtherPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD301C4C471E006B3767 /* OtherPageViewController.swift */; };
+		E3E2DD3E1C4C471E006B3767 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD311C4C471E006B3767 /* ViewController.swift */; };
+		E3E2DD441C4C477C006B3767 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD401C4C477C006B3767 /* Item.swift */; };
+		E3E2DD451C4C477C006B3767 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD411C4C477C006B3767 /* Category+CoreDataProperties.swift */; };
+		E3E2DD461C4C477C006B3767 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD421C4C477C006B3767 /* Category.swift */; };
+		E3E2DD481C4C4787006B3767 /* buyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD471C4C4787006B3767 /* buyList.swift */; };
+		E3E2DD4A1C4C5048006B3767 /* addViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD491C4C5048006B3767 /* addViewController.swift */; };
+		E3F94D7D1C4C831B00F37F2C /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F94D7C1C4C831B00F37F2C /* Item+CoreDataProperties.swift */; };
+		E3F94D811C4D547800F37F2C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F94D801C4D547800F37F2C /* MainTabBarController.swift */; };
+		F8E768ED1253A7FB6AFB0FDB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8142B3E968C48E42BD6A35EB /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +49,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8142B3E968C48E42BD6A35EB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9481E22EDA9CDCA2AB2152BA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B0BA4BE120A97CD5F3F6DF7D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E3E2DCEE1C4C46F3006B3767 /* iMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E3E2DCF31C4C46F3006B3767 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E3E2DCF61C4C46F3006B3767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3E2DCF91C4C46F3006B3767 /* iMoney.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMoney.xcdatamodel; sourceTree = "<group>"; };
-		E3E2DCFB1C4C46F3006B3767 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E3E2DCFE1C4C46F3006B3767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3E2DD001C4C46F3006B3767 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3E2DD051C4C46F3006B3767 /* iMoneyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMoneyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E2DD091C4C46F3006B3767 /* iMoneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMoneyTests.swift; sourceTree = "<group>"; };
@@ -49,6 +62,23 @@
 		E3E2DD101C4C46F3006B3767 /* iMoneyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iMoneyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E2DD141C4C46F3006B3767 /* iMoneyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iMoneyUITests.swift; sourceTree = "<group>"; };
 		E3E2DD161C4C46F3006B3767 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3E2DD221C4C471E006B3767 /* SwiftColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftColors.swift; path = ../SwiftColors.swift; sourceTree = "<group>"; };
+		E3E2DD261C4C471E006B3767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E3E2DD281C4C471E006B3767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E3E2DD291C4C471E006B3767 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		E3E2DD2A1C4C471E006B3767 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E3E2DD2B1C4C471E006B3767 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E3E2DD2D1C4C471E006B3767 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		E3E2DD2F1C4C471E006B3767 /* MainTabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTabBarController.xib; sourceTree = "<group>"; };
+		E3E2DD301C4C471E006B3767 /* OtherPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherPageViewController.swift; sourceTree = "<group>"; };
+		E3E2DD311C4C471E006B3767 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E3E2DD401C4C477C006B3767 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		E3E2DD411C4C477C006B3767 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E3E2DD421C4C477C006B3767 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E3E2DD471C4C4787006B3767 /* buyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buyList.swift; sourceTree = "<group>"; };
+		E3E2DD491C4C5048006B3767 /* addViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addViewController.swift; sourceTree = "<group>"; };
+		E3F94D7C1C4C831B00F37F2C /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E3F94D801C4D547800F37F2C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8E768ED1253A7FB6AFB0FDB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,13 +107,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C266DCB41A2DDE632E2B486 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B0BA4BE120A97CD5F3F6DF7D /* Pods.debug.xcconfig */,
+				9481E22EDA9CDCA2AB2152BA /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D1F9991942D1163058221281 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8142B3E968C48E42BD6A35EB /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E3E2DCE51C4C46F3006B3767 = {
 			isa = PBXGroup;
 			children = (
+				E3F94D7C1C4C831B00F37F2C /* Item+CoreDataProperties.swift */,
+				E3E2DD401C4C477C006B3767 /* Item.swift */,
+				E3E2DD411C4C477C006B3767 /* Category+CoreDataProperties.swift */,
+				E3E2DD421C4C477C006B3767 /* Category.swift */,
 				E3E2DCF01C4C46F3006B3767 /* iMoney */,
 				E3E2DD081C4C46F3006B3767 /* iMoneyTests */,
 				E3E2DD131C4C46F3006B3767 /* iMoneyUITests */,
 				E3E2DCEF1C4C46F3006B3767 /* Products */,
+				1C266DCB41A2DDE632E2B486 /* Pods */,
+				D1F9991942D1163058221281 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,12 +154,11 @@
 			isa = PBXGroup;
 			children = (
 				E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */,
-				E3E2DCF31C4C46F3006B3767 /* ViewController.swift */,
-				E3E2DCF51C4C46F3006B3767 /* Main.storyboard */,
-				E3E2DCFB1C4C46F3006B3767 /* Assets.xcassets */,
-				E3E2DCFD1C4C46F3006B3767 /* LaunchScreen.storyboard */,
+				E3E2DD471C4C4787006B3767 /* buyList.swift */,
 				E3E2DD001C4C46F3006B3767 /* Info.plist */,
+				E3E2DD491C4C5048006B3767 /* addViewController.swift */,
 				E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */,
+				E3E2DD231C4C471E006B3767 /* SwiftSideslipLikeQQ */,
 			);
 			path = iMoney;
 			sourceTree = "<group>";
@@ -128,6 +181,24 @@
 			path = iMoneyUITests;
 			sourceTree = "<group>";
 		};
+		E3E2DD231C4C471E006B3767 /* SwiftSideslipLikeQQ */ = {
+			isa = PBXGroup;
+			children = (
+				E3E2DD221C4C471E006B3767 /* SwiftColors.swift */,
+				E3E2DD251C4C471E006B3767 /* LaunchScreen.xib */,
+				E3E2DD271C4C471E006B3767 /* Main.storyboard */,
+				E3E2DD291C4C471E006B3767 /* Common.swift */,
+				E3E2DD2A1C4C471E006B3767 /* HomeViewController.swift */,
+				E3E2DD2B1C4C471E006B3767 /* Images.xcassets */,
+				E3E2DD2D1C4C471E006B3767 /* LeftViewController.swift */,
+				E3F94D801C4D547800F37F2C /* MainTabBarController.swift */,
+				E3E2DD2F1C4C471E006B3767 /* MainTabBarController.xib */,
+				E3E2DD301C4C471E006B3767 /* OtherPageViewController.swift */,
+				E3E2DD311C4C471E006B3767 /* ViewController.swift */,
+			);
+			path = SwiftSideslipLikeQQ;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +206,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3E2DD191C4C46F3006B3767 /* Build configuration list for PBXNativeTarget "iMoney" */;
 			buildPhases = (
+				2C91D4679734D55E92D1B75B /* Check Pods Manifest.lock */,
 				E3E2DCEA1C4C46F3006B3767 /* Sources */,
 				E3E2DCEB1C4C46F3006B3767 /* Frameworks */,
 				E3E2DCEC1C4C46F3006B3767 /* Resources */,
+				1C42B0E31DBCE999D8234954 /* Embed Pods Frameworks */,
+				6AE48B79B33009EF25BC814E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,9 +306,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3E2DCFF1C4C46F3006B3767 /* LaunchScreen.storyboard in Resources */,
-				E3E2DCFC1C4C46F3006B3767 /* Assets.xcassets in Resources */,
-				E3E2DCF71C4C46F3006B3767 /* Main.storyboard in Resources */,
+				E3E2DD341C4C471E006B3767 /* LaunchScreen.xib in Resources */,
+				E3E2DD351C4C471E006B3767 /* Main.storyboard in Resources */,
+				E3E2DD381C4C471E006B3767 /* Images.xcassets in Resources */,
+				E3E2DD3C1C4C471E006B3767 /* MainTabBarController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,14 +329,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C42B0E31DBCE999D8234954 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C91D4679734D55E92D1B75B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6AE48B79B33009EF25BC814E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E3E2DCEA1C4C46F3006B3767 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3E2DCF41C4C46F3006B3767 /* ViewController.swift in Sources */,
 				E3E2DCF21C4C46F3006B3767 /* AppDelegate.swift in Sources */,
 				E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */,
+				E3F94D811C4D547800F37F2C /* MainTabBarController.swift in Sources */,
+				E3E2DD3E1C4C471E006B3767 /* ViewController.swift in Sources */,
+				E3E2DD481C4C4787006B3767 /* buyList.swift in Sources */,
+				E3E2DD3D1C4C471E006B3767 /* OtherPageViewController.swift in Sources */,
+				E3E2DD441C4C477C006B3767 /* Item.swift in Sources */,
+				E3E2DD451C4C477C006B3767 /* Category+CoreDataProperties.swift in Sources */,
+				E3E2DD361C4C471E006B3767 /* Common.swift in Sources */,
+				E3F94D7D1C4C831B00F37F2C /* Item+CoreDataProperties.swift in Sources */,
+				E3E2DD461C4C477C006B3767 /* Category.swift in Sources */,
+				E3E2DD3A1C4C471E006B3767 /* LeftViewController.swift in Sources */,
+				E3E2DD371C4C471E006B3767 /* HomeViewController.swift in Sources */,
+				E3E2DD4A1C4C5048006B3767 /* addViewController.swift in Sources */,
+				E3E2DD321C4C471E006B3767 /* SwiftColors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,20 +432,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E3E2DCF51C4C46F3006B3767 /* Main.storyboard */ = {
+		E3E2DD251C4C471E006B3767 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E3E2DCF61C4C46F3006B3767 /* Base */,
+				E3E2DD261C4C471E006B3767 /* Base */,
 			);
-			name = Main.storyboard;
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
-		E3E2DCFD1C4C46F3006B3767 /* LaunchScreen.storyboard */ = {
+		E3E2DD271C4C471E006B3767 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E3E2DCFE1C4C46F3006B3767 /* Base */,
+				E3E2DD281C4C471E006B3767 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -401,6 +536,7 @@
 		};
 		E3E2DD1A1C4C46F3006B3767 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0BA4BE120A97CD5F3F6DF7D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = iMoney/Info.plist;
@@ -412,6 +548,7 @@
 		};
 		E3E2DD1B1C4C46F3006B3767 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9481E22EDA9CDCA2AB2152BA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = iMoney/Info.plist;
@@ -488,6 +625,7 @@
 				E3E2DD1B1C4C46F3006B3767 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E3E2DD1C1C4C46F3006B3767 /* Build configuration list for PBXNativeTarget "iMoneyTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +634,7 @@
 				E3E2DD1E1C4C46F3006B3767 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E3E2DD1F1C4C46F3006B3767 /* Build configuration list for PBXNativeTarget "iMoneyUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +643,7 @@
 				E3E2DD211C4C46F3006B3767 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
