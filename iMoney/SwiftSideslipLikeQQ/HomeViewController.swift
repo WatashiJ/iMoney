@@ -23,6 +23,9 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
             userDefault.setObject(newValue, forKey: "currentCate")
             userDefault.synchronize()
             itemList = buyList(at: newValue)
+            if tableView != nil {
+                tableView.reloadData()
+            }
         } get {
             let userDefault = NSUserDefaults.standardUserDefaults()
             return (userDefault.objectForKey("currentCate") as? String) ?? ""
@@ -34,6 +37,7 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
 
         navigationItem.title = currentCate
         itemList = buyList(at: currentCate)
+        tableView.estimatedRowHeight = 50
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,24 +54,54 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
     // MARK: - Table View
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("ItemListCell") else {
-            let tempCell = UITableViewCell()
-            tempCell.textLabel?.text = (itemList.workingList![indexPath.row].name) ?? ""
-            return tempCell
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("sumCell") as? SummaryTableViewCell else {
+                let tempCell = UITableViewCell()
+                tempCell.textLabel?.text = "ERROR!"
+                return tempCell
+            }
+            cell.summaryLabel.text = "Summary of \(currentCate)"
+            cell.moneyLabel.text = "$" + "\(itemList.summaryOf(category: currentCate))"
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as? DetailTableViewCell else {
+                let tempCell = UITableViewCell()
+                tempCell.textLabel?.text = (itemList.workingList![indexPath.row].name) ?? ""
+                return tempCell
+            }
+            cell.itemLabel.text = itemList.workingList![indexPath.row].name
+            if let price = itemList.workingList![indexPath.row].price {
+                cell.moneyLabel.text = "$" + "\(price)"
+            }
+            return cell
         }
-        cell.textLabel?.text = itemList.workingList![indexPath.row].name
-        return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if itemList == nil {
             return 0
         }
-        return itemList.workingList?.count ?? 0
+        if section == 0 {
+            return 1
+        } else {
+            return itemList.workingList?.count ?? 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section != 0 {
+            return UITableViewAutomaticDimension
+        } else {
+            return 77
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     // MARK: - Navigation
 

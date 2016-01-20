@@ -109,6 +109,3 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 }
 
-extension Array where Element: iMoney.Category {
-    
-}

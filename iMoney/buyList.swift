@@ -114,6 +114,23 @@ class buyList {
         categoryList = cates
     }
     
+    func summaryOf(category Category: String) -> NSDecimalNumber {
+        let summaryCategory = NSFetchRequest(entityName: "Category")
+        summaryCategory.predicate = NSPredicate(format: "name = \"\(Category)\"")
+        guard let cate = (try? context.executeFetchRequest(summaryCategory) as? [iMoney.Category]) else {
+            return 0
+        }
+        var sum: NSDecimalNumber = 0
+        if let itemsIn = cate![0].items?.allObjects as? [iMoney.Item] {
+            for item in itemsIn {
+                if item.price != nil {
+                    sum = sum.decimalNumberByAdding(item.price!)
+                }
+            }
+        }
+        return sum
+    }
+    
     func saveContext() {
         appDelegate.saveContext()
     }
