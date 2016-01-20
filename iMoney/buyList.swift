@@ -10,11 +10,9 @@ import Foundation
 import CoreData
 import UIKit
 
-//TODO: - Number of items
-//TODO: - Show All
-//TODO: - Delete item
-//TODO: - Sort by time
-//TODO: - List of the month
+//TODO: - Manage categories
+//TODO: - Setting
+//TODO: - Summary of months
 
 class buyList {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -129,6 +127,21 @@ class buyList {
             }
         }
         return sum
+    }
+    
+    func deleteCategory(by name: String) {
+        let fetch = NSFetchRequest(entityName: "Category")
+        fetch.predicate = NSPredicate(format: "name = \"\(name)\"")
+        guard let category = (try? context.executeFetchRequest(fetch) as? [iMoney.Category]),
+        let items = category![0].items,
+        let its = items.allObjects as? [iMoney.Item] else {
+            return
+        }
+        for item in its {
+            context.deleteObject(item)
+        }
+        context.deleteObject(category![0])
+        saveContext()
     }
     
     func saveContext() {

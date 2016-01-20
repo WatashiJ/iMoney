@@ -66,6 +66,30 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            let alert = UIAlertController(title: "Warning", message: "All the records in this category will be deleted!", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Confirm", style: .Default, handler: { [unowned self] (action) -> Void in
+                self.itemList.deleteCategory(by: self.titlesDictionary[indexPath.row])
+                self.titlesDictionary.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    
+    func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+        return true
+    }
 
     @IBAction func addCategories(sender: UIButton) {
         let alert = UIAlertController(title: "Add", message: "Input a name for the category", preferredStyle: .Alert)
