@@ -33,6 +33,10 @@ class addViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        dateField.text = NSDate().dateOnly
+        categoryField.text = cate ?? ""
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,6 +100,17 @@ class addViewController: UIViewController {
         catePicker.showActionSheetPicker()
     }
     
+    @IBAction func fieldTouchDown(sender: UITextField) {
+        let label = UILabel(frame: sender.frame)
+        label.center.x -= 4
+        label.font = UIFont.systemFontOfSize(20)
+        label.text = sender.placeholder
+        view.addSubview(label)
+        sender.placeholder = ""
+        UIView.animateWithDuration(0.3) { () -> Void in
+            label.center.y = label.center.y - 30
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -124,5 +139,21 @@ extension NSDate {
         let dateFmt = NSDateFormatter()
         dateFmt.dateFormat = "yyyy-MM-dd"
         return dateFmt.stringFromDate(self)
+    }
+}
+
+extension UITextField {
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UIColor.grayColor().CGColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width + 10, height: self.frame.size.height)
+        
+        border.borderWidth = width
+        
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
     }
 }

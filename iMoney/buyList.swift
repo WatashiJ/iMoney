@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-//TODO: - Manage categories
+//TODO: - addVC: Move labels up
 //TODO: - Setting
 //TODO: - Summary of months
 

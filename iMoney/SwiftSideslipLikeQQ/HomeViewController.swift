@@ -111,6 +111,7 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
             if let destinationVC = (segue.destinationViewController as? UINavigationController)?.viewControllers[0] as? addViewController {
                 destinationVC.nameOfCate = ["Groceries", "Vegetables"]
                 destinationVC.numOfCate = 1
+                destinationVC.cate = currentCate
                 destinationVC.delegate = self
             }
         }
