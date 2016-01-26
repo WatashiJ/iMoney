@@ -27,6 +27,8 @@ class addViewController: UIViewController {
     var numOfCate: Int!
     var nameOfCate: [String]!
     
+    private var labelForField: UILabel?
+    
     var datePicker: ActionSheetDatePicker!
     
     override func viewDidLoad() {
@@ -99,8 +101,14 @@ class addViewController: UIViewController {
         catePicker.showActionSheetPicker()
     }
     
+    //FIXME: - Label problem
     @IBAction func fieldTouchDown(sender: UITextField) {
+        if labelForField != nil {
+            let anotherField = sender === nameField ? nameField : moneyField
+            fieldEndEditting(anotherField)
+        }
         let label = UILabel(frame: sender.frame)
+        labelForField = label
         label.center.x -= 4
         label.font = UIFont.systemFontOfSize(20)
         label.text = sender.placeholder
@@ -108,6 +116,18 @@ class addViewController: UIViewController {
         sender.placeholder = ""
         UIView.animateWithDuration(0.3) { () -> Void in
             label.center.y = label.center.y - 30
+        }
+    }
+    
+    func fieldEndEditting(sender: UITextField) {
+        if sender.text == "" && labelForField != nil {
+            UIView.animateWithDuration(0.3, animations: {
+                _ in
+                self.labelForField!.center.y += 30
+                }) {  _ in
+                sender.placeholder = self.labelForField!.text
+                self.labelForField!.removeFromSuperview()
+            }
         }
     }
     /*
