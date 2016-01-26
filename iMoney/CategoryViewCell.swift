@@ -1,18 +1,17 @@
 //
-//  DetailTableViewCell.swift
+//  CategoryViewCell.swift
 //  iMoney
 //
-//  Created by Yaxin Cheng on 2016-01-19.
+//  Created by Yaxin Cheng on 2016-01-25.
 //  Copyright © 2016 Yaxin Cheng. All rights reserved.
 //
 
 import UIKit
 
-class DetailTableViewCell: UITableViewCell {
+class CategoryViewCell: UITableViewCell {
 
     @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var itemLabel: UILabel!
-    @IBOutlet weak var moneyLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     var title: String! {
         didSet {
             setEverything()
@@ -34,17 +33,18 @@ class DetailTableViewCell: UITableViewCell {
     }
     
     private func setEverything() {
+        if titleLabel != nil {
+            titleLabel.text = title
+        }
         if iconView != nil {
-            iconView.tintColor = Common.commonColour
             switch title {
             case "Vegetables":
-                iconView.image = UIImage(named: "vege")?.imageWithRenderingMode(.AlwaysTemplate)
+                iconView.image = UIImage(named: "vege")
             case "Groceries":
-                iconView.image = UIImage(named: "grocery")?.imageWithRenderingMode(.AlwaysTemplate)
+                iconView.image = UIImage(named: "grocery")
             default:
                 break
             }
         }
     }
-
 }

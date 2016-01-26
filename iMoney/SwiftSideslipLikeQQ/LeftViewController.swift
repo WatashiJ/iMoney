@@ -59,10 +59,11 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("leftViewCell", forIndexPath: indexPath) 
-        
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("leftViewCell", forIndexPath: indexPath) as? CategoryViewCell else {
+            return UITableViewCell()
+        }
         cell.backgroundColor = UIColor.clearColor()
-        cell.textLabel!.text = titlesDictionary[indexPath.row]
+        cell.title = titlesDictionary[indexPath.row]
         
         return cell
     }

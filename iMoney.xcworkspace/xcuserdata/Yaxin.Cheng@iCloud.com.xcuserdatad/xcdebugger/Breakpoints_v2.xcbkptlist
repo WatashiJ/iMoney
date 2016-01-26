@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "cateFieldTouched()"
             landmarkType = "5">
             <Locations>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "dateFieldTouched()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "474951883.381819"
+            timestampString = "475468824.834677"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "474951883.381819"
+            timestampString = "475468824.834677"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "DoneButtonPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "DoneButtonPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/LeftViewController.swift"
-            timestampString = "474996581.198806"
+            timestampString = "475468174.069206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "addCategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,27 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/LeftViewController.swift"
-            timestampString = "474827094.596151"
+            timestampString = "475468174.069206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iMoney/SwiftSideslipLikeQQ/LeftViewController.swift"
-            timestampString = "474996581.198806"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "addCategories(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "dateFieldTouched()"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "DoneButtonPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "dateFieldTouched()"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "DoneButtonPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,12 +346,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/addViewController.swift"
-            timestampString = "475111748.661869"
+            timestampString = "475469797.004207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "fieldTouchDown(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iMoney/SwiftSideslipLikeQQ/LeftViewController.swift"
+            timestampString = "475467764.041746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iMoney/CategoryViewCell.swift"
+            timestampString = "475468214.076321"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "awakeFromNib()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

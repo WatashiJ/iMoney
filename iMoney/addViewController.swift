@@ -34,9 +34,8 @@ class addViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         dateField.text = NSDate().dateOnly
+        date = NSDate()
         categoryField.text = cate ?? ""
-        
-        
     }
 
     override func didReceiveMemoryWarning() {

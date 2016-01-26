@@ -13,5 +13,6 @@ struct Common {
     static let screenWidth = UIScreen.mainScreen().bounds.maxX
     static let screenHeight = UIScreen.mainScreen().bounds.maxY
     static let rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController as! ViewController
-    static let contactsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Contacts") 
+    static let contactsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Contacts")
+    static let commonColour = UIColor(red: 0, green: 150/255, blue: 136/255, alpha: 1)
 }

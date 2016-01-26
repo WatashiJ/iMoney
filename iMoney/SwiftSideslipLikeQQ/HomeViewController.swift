@@ -69,6 +69,7 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
                 tempCell.textLabel?.text = (itemList.workingList![indexPath.row].name) ?? ""
                 return tempCell
             }
+            cell.title = currentCate
             cell.itemLabel.text = itemList.workingList![indexPath.row].name
             if let price = itemList.workingList![indexPath.row].price {
                 cell.moneyLabel.text = "$" + "\(price)"

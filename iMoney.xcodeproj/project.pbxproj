@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E34035FC1C4FE14F00DB1D90 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34035FB1C4FE14F00DB1D90 /* SettingViewController.swift */; };
+		E34035FE1C570CC000DB1D90 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */; };
 		E3E2DCF21C4C46F3006B3767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */; };
 		E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */; };
 		E3E2DD0A1C4C46F3006B3767 /* iMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD091C4C46F3006B3767 /* iMoneyTests.swift */; };
@@ -56,6 +57,7 @@
 		9481E22EDA9CDCA2AB2152BA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B0BA4BE120A97CD5F3F6DF7D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E34035FB1C4FE14F00DB1D90 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = SwiftSideslipLikeQQ/SettingViewController.swift; sourceTree = "<group>"; };
+		E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		E3E2DCEE1C4C46F3006B3767 /* iMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3E2DCF91C4C46F3006B3767 /* iMoney.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMoney.xcdatamodel; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				E34035FB1C4FE14F00DB1D90 /* SettingViewController.swift */,
 				E3F94D841C4F265200F37F2C /* SummaryTableViewCell.swift */,
 				E3F94D861C4F265B00F37F2C /* DetailTableViewCell.swift */,
+				E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */,
 				E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */,
 				E3E2DD231C4C471E006B3767 /* SwiftSideslipLikeQQ */,
 			);
@@ -395,6 +398,7 @@
 				E3F94D871C4F265B00F37F2C /* DetailTableViewCell.swift in Sources */,
 				E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */,
 				E3F94D811C4D547800F37F2C /* MainTabBarController.swift in Sources */,
+				E34035FE1C570CC000DB1D90 /* CategoryViewCell.swift in Sources */,
 				E3E2DD3E1C4C471E006B3767 /* ViewController.swift in Sources */,
 				E34035FC1C4FE14F00DB1D90 /* SettingViewController.swift in Sources */,
 				E3E2DD481C4C4787006B3767 /* buyList.swift in Sources */,

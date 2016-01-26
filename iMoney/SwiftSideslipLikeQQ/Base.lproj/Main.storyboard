@@ -83,7 +83,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DxJ-Jj-bnP">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="tintColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -103,7 +103,7 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qq" translatesAutoresizingMaskIntoConstraints="NO" id="P6u-qo-TrF">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money" translatesAutoresizingMaskIntoConstraints="NO" id="P6u-qo-TrF">
                                                             <rect key="frame" x="8" y="16" width="30" height="30"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BUC-7m-okg">
@@ -343,7 +343,7 @@
                                     <constraint firstAttribute="height" constant="379" id="gbL-NB-q4o"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="leftViewCell" textLabel="17S-eO-DBm" imageView="jyA-n4-7aN" style="IBUITableViewCellStyleDefault" id="JIn-DD-cJQ">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="leftViewCell" textLabel="17S-eO-DBm" imageView="jyA-n4-7aN" style="IBUITableViewCellStyleDefault" id="JIn-DD-cJQ" customClass="CategoryViewCell" customModule="iMoney" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JIn-DD-cJQ" id="wyq-da-0bl">
@@ -357,13 +357,17 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="qq" id="jyA-n4-7aN">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="vege" id="jyA-n4-7aN">
                                                     <rect key="frame" x="15" y="6" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="iconView" destination="jyA-n4-7aN" id="HQz-wp-2eS"/>
+                                            <outlet property="titleLabel" destination="17S-eO-DBm" id="Wfa-cq-ApS"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -550,7 +554,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="money" width="30" height="30"/>
         <image name="qq" width="30" height="30"/>
+        <image name="vege" width="30" height="30"/>
         <image name="xingxing" width="26" height="27"/>
     </resources>
 </document>
