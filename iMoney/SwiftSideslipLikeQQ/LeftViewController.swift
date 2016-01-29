@@ -120,6 +120,15 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    @IBAction func settingButtonPressed(sender: UIButton) {
+        let viewController = Common.rootViewController
+        viewController.homeViewController.titleOfOtherPages = "Setting"
+        viewController.homeViewController.performSegueWithIdentifier("showSetting", sender: self)
+        viewController.mainTabBarController.tabBar.hidden = true
+        viewController.mainTabBarController.selectedIndex = 0
+        Common.contactsVC.view.removeFromSuperview()
+        viewController.showHome()
+    }
     // MARK: - Navigation
 
 //     In a storyboard-based application, you will often want to do a little preparation before navigation

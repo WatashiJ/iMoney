@@ -21,7 +21,7 @@ class OtherPageViewController: UIViewController {
         mainLabel.text = PageTitle
         
         // 自定义返回按钮
-        let backButton = UIBarButtonItem(title: "く返回", style: UIBarButtonItemStyle.Plain, target: self, action: "goBack")
+        let backButton = UIBarButtonItem(title: "くBack", style: UIBarButtonItemStyle.Plain, target: self, action: "goBack")
         self.navigationItem.leftBarButtonItem = backButton
         
         // 弥补因为返回按钮被替换导致的边缘滑入手势失效的问题
@@ -36,7 +36,7 @@ class OtherPageViewController: UIViewController {
     
     func goBack() {
         self.navigationController?.popViewControllerAnimated(true)
-//        Common.rootViewController.mainTabBarController.tabBar.hidden = false
+        Common.rootViewController.mainTabBarController.tabBar.hidden = false
     }
 
     /*

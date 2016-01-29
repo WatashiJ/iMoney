@@ -111,7 +111,7 @@ class ViewController: UIViewController {
         let x = recongnizer.translationInView(self.view).x
         let trueDistance = distance + x // 实时距离
         let trueProportion = trueDistance / (Common.screenWidth*FullDistance)
-        if x < 0 && distance >= 0 {
+        if x <= 0 && distance <= 0 {
             return
         }
         
@@ -154,6 +154,7 @@ class ViewController: UIViewController {
     func showLeft() {
         // 给首页 加入 点击自动关闭侧滑菜单功能
         mainView.addGestureRecognizer(tapGesture)
+        homeViewController.tableView.userInteractionEnabled = false
         // 计算距离，执行菜单自动滑动动画
         distance = self.view.center.x * (FullDistance*2 + Proportion - 1)
         doTheAnimate(self.Proportion, showWhat: "left")
@@ -163,6 +164,7 @@ class ViewController: UIViewController {
     func showHome() {
         // 从首页 删除 点击自动关闭侧滑菜单功能
         mainView.removeGestureRecognizer(tapGesture)
+        homeViewController.tableView.userInteractionEnabled = true
         // 计算距离，执行菜单自动滑动动画
         distance = 0
         doTheAnimate(1, showWhat: "home")

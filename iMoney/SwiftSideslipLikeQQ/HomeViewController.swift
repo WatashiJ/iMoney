@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
     
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     private var itemList: buyList!
+    var titleOfOtherPages = ""
     
     var currentCate: String {
         set {
@@ -114,6 +115,10 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
                 destinationVC.numOfCate = 1
                 destinationVC.cate = currentCate
                 destinationVC.delegate = self
+            }
+        } else if segue.identifier == "showSetting" {
+            if let a = segue.destinationViewController as? OtherPageViewController {
+                a.PageTitle = titleOfOtherPages
             }
         }
     }
