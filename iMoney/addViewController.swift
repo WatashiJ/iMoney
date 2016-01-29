@@ -27,9 +27,11 @@ class addViewController: UIViewController {
     var numOfCate: Int!
     var nameOfCate: [String]!
     
-    private var labelForField: UILabel?
+    private var nameLabel: UILabel?
+    private var priceLabel: UILabel?
     
     var datePicker: ActionSheetDatePicker!
+    private var Context = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,8 @@ class addViewController: UIViewController {
     }
     
     @IBAction func CancelButtonPressed(sender: AnyObject) {
+        nameField.delegate = nil
+        moneyField.delegate = nil
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -101,33 +105,22 @@ class addViewController: UIViewController {
         catePicker.showActionSheetPicker()
     }
     
-    //FIXME: - Label problem
     @IBAction func fieldTouchDown(sender: UITextField) {
-        if labelForField != nil {
-            let anotherField = sender === nameField ? nameField : moneyField
-            fieldEndEditting(anotherField)
-        }
         let label = UILabel(frame: sender.frame)
-        labelForField = label
         label.center.x -= 4
         label.font = UIFont.systemFontOfSize(20)
         label.text = sender.placeholder
         view.addSubview(label)
+        let identifier = sender.placeholder!
         sender.placeholder = ""
-        UIView.animateWithDuration(0.3) { () -> Void in
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
             label.center.y = label.center.y - 30
-        }
-    }
-    
-    func fieldEndEditting(sender: UITextField) {
-        if sender.text == "" && labelForField != nil {
-            UIView.animateWithDuration(0.3, animations: {
-                _ in
-                self.labelForField!.center.y += 30
-                }) {  _ in
-                sender.placeholder = self.labelForField!.text
-                self.labelForField!.removeFromSuperview()
-            }
+            }) { [unowned self] _ in
+                switch identifier {
+                case "Name": self.nameLabel = label
+                case "Price": self.priceLabel = label
+                default: break
+                }
         }
     }
     /*
@@ -174,5 +167,24 @@ extension UITextField {
         
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
+    }
+}
+
+extension addViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(textField: UITextField) {
+        if let labelForField = priceLabel ?? nameLabel where textField.text == "" {
+            UIView.animateWithDuration(0.3, animations: {
+                _ in
+                labelForField.center.y += 30
+                }) {  [unowned self] _ in
+                    textField.placeholder = labelForField.text
+                    labelForField.removeFromSuperview()
+                    if labelForField === self.priceLabel {
+                        self.priceLabel = nil
+                    } else if labelForField === self.nameLabel {
+                        self.nameLabel = nil
+                    }
+            }
+        }
     }
 }

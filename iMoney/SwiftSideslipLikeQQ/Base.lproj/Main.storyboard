@@ -242,6 +242,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <action selector="fieldTouchDown:" destination="eOH-5N-2CX" eventType="touchDown" id="AWG-br-HzM"/>
+                                                <outlet property="delegate" destination="eOH-5N-2CX" id="3Gw-IR-CvO"/>
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBD-cU-tqy">
@@ -250,6 +251,7 @@
                                             <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             <connections>
                                                 <action selector="fieldTouchDown:" destination="eOH-5N-2CX" eventType="touchDown" id="fiU-OQ-Xzg"/>
+                                                <outlet property="delegate" destination="eOH-5N-2CX" id="y1Q-so-HTY"/>
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9KS-Dl-Oab">
