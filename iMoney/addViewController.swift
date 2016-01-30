@@ -17,13 +17,15 @@ class addViewController: UIViewController {
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var categoryField: UITextField!
     @IBOutlet weak var moneyField: UITextField!
+    @IBOutlet weak var countField: UITextField!
     
     var cate: String!
     var money: NSDecimalNumber!
     var date: NSDate!
     var name: String!
+    var count = 1
     
-    var newItem: iMoney.Item!
+    var newItem: Item!
     var numOfCate: Int!
     var nameOfCate: [String]!
     
@@ -54,8 +56,9 @@ class addViewController: UIViewController {
     }
     
     @IBAction func DoneButtonPressed(sender: AnyObject) {
+        resignAllFirstResponder()
         if name == nil {
-            if let text = nameField.text {
+            if let text = nameField.text?.trim() {
                 name = text
             }
         }
@@ -66,16 +69,27 @@ class addViewController: UIViewController {
                 money = numFmt.numberFromString(text) as? NSDecimalNumber ?? 0
             }
         }
+        if countField.text == "" {
+            count = 1
+        } else {
+            count = Int.init(countField.text!) ?? 1
+        }
         if date == nil || cate == nil || name == nil || money == nil {
             let alert = UIAlertController(title: "Warning", message: "Information is not filled", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
         } else {
-            if let newItem = iMoney.Item.initialize(name: name, category: cate, date: date, money: money) {
+            if let newItem = iMoney.Item.initialize(name: name, category: cate, date: date, money: money, count: count) {
                 delegate?.newItemDidAdd(newItem)// Need to implement
             }
             dismissViewControllerAnimated(true, completion:  nil)
         }
+    }
+    
+    private func resignAllFirstResponder() {
+        nameField.resignFirstResponder()
+        moneyField.resignFirstResponder()
+        countField.resignFirstResponder()
     }
 
     @IBAction func dateFieldTouched() {
@@ -105,24 +119,24 @@ class addViewController: UIViewController {
         catePicker.showActionSheetPicker()
     }
     
-    @IBAction func fieldTouchDown(sender: UITextField) {
-        let label = UILabel(frame: sender.frame)
-        label.center.x -= 4
-        label.font = UIFont.systemFontOfSize(20)
-        label.text = sender.placeholder
-        view.addSubview(label)
-        let identifier = sender.placeholder!
-        sender.placeholder = ""
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            label.center.y = label.center.y - 30
-            }) { [unowned self] _ in
-                switch identifier {
-                case "Name": self.nameLabel = label
-                case "Price": self.priceLabel = label
-                default: break
-                }
-        }
-    }
+//    @IBAction func fieldTouchDown(sender: UITextField) {
+//        let label = UILabel(frame: sender.frame)
+//        label.center.x -= 4
+//        label.font = UIFont.systemFontOfSize(20)
+//        label.text = sender.placeholder
+//        view.addSubview(label)
+//        let identifier = sender.placeholder!
+//        sender.placeholder = ""
+//        UIView.animateWithDuration(0.3, animations: { () -> Void in
+//            label.center.y = label.center.y - 30
+//            }) { [unowned self] _ in
+//                switch identifier {
+//                case "Name": self.nameLabel = label
+//                case "Price": self.priceLabel = label
+//                default: break
+//                }
+//        }
+//    }
     /*
     // MARK: - Navigation
 
@@ -173,7 +187,7 @@ extension UITextField {
 extension addViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         if let labelForField = priceLabel ?? nameLabel where textField.text == "" {
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animateWithDuration(0.15, animations: {
                 _ in
                 labelForField.center.y += 30
                 }) {  [unowned self] _ in
@@ -186,5 +200,52 @@ extension addViewController: UITextFieldDelegate {
                     }
             }
         }
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        let label = UILabel(frame: textField.frame)
+        label.center.x -= 4
+        label.font = UIFont.systemFontOfSize(20)
+        
+        label.text = textField.placeholder
+        view.addSubview(label)
+        let identifier = textField.placeholder!
+        textField.placeholder = ""
+        UIView.animateWithDuration(0.15, animations: { () -> Void in
+            label.center.y = label.center.y - 30
+            }) { [unowned self] _ in
+                switch identifier {
+                case "Name": self.nameLabel = label
+                case "Price": self.priceLabel = label
+                default: break
+                }
+        }
+
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if string == "\n" {
+            textField.resignFirstResponder()
+            switch textField.tag {
+            case 0: moneyField.becomeFirstResponder()
+            case 1: countField.becomeFirstResponder()
+            case 2:
+                if nameField.text == "" {
+                    nameField.becomeFirstResponder()
+                }
+            default: break
+            }
+        }
+        return true
+    }
+}
+
+private extension String {
+    mutating func trim() -> String {
+        if self.hasSuffix(" ") && !self.isEmpty {
+            self.removeAtIndex(self.endIndex.predecessor())
+            self.trim()
+        }
+        return self
     }
 }

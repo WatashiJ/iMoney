@@ -65,7 +65,7 @@ class buyList {
         let catFetch = NSFetchRequest(entityName: "Category")
         catFetch.predicate = NSPredicate(format: "name = \"\(listName)\"")
         do {
-            guard let category = try context.executeFetchRequest(catFetch) as? [iMoney.Category] else {
+            guard let category = try context.executeFetchRequest(catFetch) as? [iMoney.Category] where !category.isEmpty else {
                 return
             }
             currentCategory = category[0]
@@ -115,14 +115,25 @@ class buyList {
     func summaryOf(category Category: String) -> NSDecimalNumber {
         let summaryCategory = NSFetchRequest(entityName: "Category")
         summaryCategory.predicate = NSPredicate(format: "name = \"\(Category)\"")
-        guard let cate = (try? context.executeFetchRequest(summaryCategory) as? [iMoney.Category]) else {
+        var cate: [iMoney.Category]? = nil
+        do {
+            cate = (try context.executeFetchRequest(summaryCategory) as? [iMoney.Category])
+        } catch {
+            return 0
+        }
+        if cate == nil {
+            return 0
+        }
+        if cate!.isEmpty {
             return 0
         }
         var sum: NSDecimalNumber = 0
         if let itemsIn = cate![0].items?.allObjects as? [iMoney.Item] {
             for item in itemsIn {
-                if item.price != nil {
-                    sum = sum.decimalNumberByAdding(item.price!)
+                if item.price != nil && item.record != nil {
+                    let count = item.record!.count?.integerToDecimalNumber()
+                    let cost = item.price!.price!.decimalNumberByMultiplyingBy(count!)
+                    sum = sum.decimalNumberByAdding(cost) // Total price instead of single price
                 }
             }
         }
@@ -148,3 +159,4 @@ class buyList {
         appDelegate.saveContext()
     }
 }
+

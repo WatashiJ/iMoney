@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
                 return tempCell
             }
             cell.summaryLabel.text = "Summary of \(currentCate)"
-            cell.moneyLabel.text = "$" + "\(itemList.summaryOf(category: currentCate))"
+            cell.moneyLabel.text = "$" + "\(itemList.summaryOf(category: currentCate) ?? 0)"
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as? DetailTableViewCell else {
@@ -72,9 +72,9 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
             }
             cell.title = currentCate
             cell.itemLabel.text = itemList.workingList![indexPath.row].name
-            if let price = itemList.workingList![indexPath.row].price {
-                cell.moneyLabel.text = "$" + "\(price)"
-            }
+            let price = itemList.workingList![indexPath.row].totalPrice()
+            cell.moneyLabel.text = "$" + price
+            
             return cell
         }
     }
