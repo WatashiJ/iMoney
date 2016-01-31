@@ -10,9 +10,10 @@ import Foundation
 import CoreData
 import UIKit
 
-//TODO: - addVC: Move labels up
+//TODO: - Monthly show
+//TODO: - Summary
+//TODO: - iCloud
 //TODO: - Setting
-//TODO: - Summary of months
 
 class buyList {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

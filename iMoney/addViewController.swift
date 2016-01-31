@@ -31,6 +31,7 @@ class addViewController: UIViewController {
     
     private var nameLabel: UILabel?
     private var priceLabel: UILabel?
+    private var countLabel: UILabel?
     
     var datePicker: ActionSheetDatePicker!
     private var Context = 0
@@ -58,7 +59,7 @@ class addViewController: UIViewController {
     @IBAction func DoneButtonPressed(sender: AnyObject) {
         resignAllFirstResponder()
         if name == nil {
-            if let text = nameField.text?.trim() {
+            if let text = nameField.text?.trim(by: " ") {
                 name = text
             }
         }
@@ -92,9 +93,11 @@ class addViewController: UIViewController {
         countField.resignFirstResponder()
     }
 
+    @IBAction func touchDownView(sender: AnyObject) {
+        resignAllFirstResponder()
+    }
     @IBAction func dateFieldTouched() {
-        nameField.resignFirstResponder()
-        moneyField.resignFirstResponder()
+        resignAllFirstResponder()
         dateField.inputView = UIView()
         let datePicker = ActionSheetDatePicker(title: "Date", datePickerMode: .Date, selectedDate: NSDate(), doneBlock: {[unowned self] (picker, value, index) -> Void in
             self.date = (value as! NSDate).removeTime()
@@ -106,8 +109,7 @@ class addViewController: UIViewController {
     }
     
     @IBAction func cateFieldTouched() {
-        nameField.resignFirstResponder()
-        moneyField.resignFirstResponder()
+        resignAllFirstResponder()
         categoryField.inputView = UIView()
         let catePicker = ActionSheetStringPicker(title: "Category", rows: nameOfCate, initialSelection: 0, doneBlock: {[unowned self] (picker, index, value)  -> Void in
             self.cate = self.nameOfCate[index]
@@ -118,26 +120,7 @@ class addViewController: UIViewController {
         
         catePicker.showActionSheetPicker()
     }
-    
-//    @IBAction func fieldTouchDown(sender: UITextField) {
-//        let label = UILabel(frame: sender.frame)
-//        label.center.x -= 4
-//        label.font = UIFont.systemFontOfSize(20)
-//        label.text = sender.placeholder
-//        view.addSubview(label)
-//        let identifier = sender.placeholder!
-//        sender.placeholder = ""
-//        UIView.animateWithDuration(0.3, animations: { () -> Void in
-//            label.center.y = label.center.y - 30
-//            }) { [unowned self] _ in
-//                switch identifier {
-//                case "Name": self.nameLabel = label
-//                case "Price": self.priceLabel = label
-//                default: break
-//                }
-//        }
-//    }
-    /*
+        /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -173,7 +156,7 @@ extension UITextField {
         super.awakeFromNib()
         
         let border = CALayer()
-        let width = CGFloat(1.0)
+        let width = CGFloat(0.7)
         border.borderColor = UIColor.grayColor().CGColor
         border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width + 10, height: self.frame.size.height)
         
@@ -186,65 +169,70 @@ extension UITextField {
 
 extension addViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
-        if let labelForField = priceLabel ?? nameLabel where textField.text == "" {
+        moveDownLabels(of: textField)
+    }
+    
+    private func moveDownLabels(of textField: UITextField) {
+        if let labelForField = priceLabel ?? nameLabel ?? countLabel where textField.text == "" {
             UIView.animateWithDuration(0.15, animations: {
                 _ in
                 labelForField.center.y += 30
-                }) {  [unowned self] _ in
+                }) {
+                    [unowned self] _ in
                     textField.placeholder = labelForField.text
                     labelForField.removeFromSuperview()
                     if labelForField === self.priceLabel {
                         self.priceLabel = nil
                     } else if labelForField === self.nameLabel {
                         self.nameLabel = nil
+                    } else if labelForField === self.countLabel {
+                        self.countLabel = nil
                     }
             }
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    private func moveUpLabels(of textField: UITextField) {
         let label = UILabel(frame: textField.frame)
         label.center.x -= 4
-        label.font = UIFont.systemFontOfSize(20)
+        label.font = UIFont.systemFontOfSize(20, weight: 0.3) //UIFont.systemFontOfSize(20)
         
         label.text = textField.placeholder
         view.addSubview(label)
         let identifier = textField.placeholder!
         textField.placeholder = ""
-        UIView.animateWithDuration(0.15, animations: { () -> Void in
+        UIView.animateWithDuration(0.15, animations: {
+            () -> Void in
             label.center.y = label.center.y - 30
-            }) { [unowned self] _ in
+            }) {
+                [unowned self] _ in
                 switch identifier {
                 case "Name": self.nameLabel = label
                 case "Price": self.priceLabel = label
+                case "Count": self.countLabel = label
                 default: break
                 }
         }
-
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        moveUpLabels(of: textField)
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if string == "\n" {
             textField.resignFirstResponder()
-            switch textField.tag {
-            case 0: moneyField.becomeFirstResponder()
-            case 1: countField.becomeFirstResponder()
-            case 2:
-                if nameField.text == "" {
-                    nameField.becomeFirstResponder()
-                }
-            default: break
-            }
+            moneyField.becomeFirstResponder()
         }
         return true
     }
 }
 
 private extension String {
-    mutating func trim() -> String {
-        if self.hasSuffix(" ") && !self.isEmpty {
+    mutating func trim(by component: String) -> String {
+        if self.hasSuffix(component) && !self.isEmpty {
             self.removeAtIndex(self.endIndex.predecessor())
-            self.trim()
+            self.trim(by: component)
         }
         return self
     }
