@@ -19,15 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let context = self.managedObjectContext
         let fetch = NSFetchRequest(entityName: "Category")
-        if context.countForFetchRequest(fetch, error: nil) == 0 {
+        if context.countForFetchRequest(fetch, error: nil) == 0 {// If first time launch the app
             if let vege = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: context) as? iMoney.Category,
                 let grocery = NSEntityDescription.insertNewObjectForEntityForName("Category", inManagedObjectContext: context) as? iMoney.Category {
+                    // Create two categories, which is vegetable and groceries
                 vege.name = "Vegetables"
                 grocery.name = "Groceries"
             }
             
         }
-        saveContext()
+        saveContext()// Save
         return true
     }
 
