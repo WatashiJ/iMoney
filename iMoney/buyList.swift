@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-//TODO: - Monthly show
 //TODO: - Summary
 //TODO: - iCloud
 //TODO: - Setting
@@ -37,7 +36,6 @@ class buyList {
     
     var workingList: [iMoney.Item]?// The items in the current category
     var categoryList: [iMoney.Category]?// All categories
-    var currentCategory: iMoney.Category!// The category working on
     var workingItem: iMoney.Item?// The current item
     var namesOfCategories: [String] {// Get names of all categories
         var names = [String]()
@@ -69,19 +67,13 @@ class buyList {
         }
         
         // View by categories
-        let catFetch = NSFetchRequest(entityName: "Category")// Category Name
-        catFetch.predicate = NSPredicate(format: "name = \"\(listName)\"")// Search for the Category
+        let itemFetch = NSFetchRequest(entityName: "Item")// Category Name
+        itemFetch.predicate = NSPredicate(format: "(category.name = \"\(listName)\")AND(record.date >= %@)AND(record.date <= %@)", NSDate().startOfTheMonth(), NSDate().endOfTheMonth())// Search for items in the category and must be in this month
         do {
-            guard let category = try context.executeFetchRequest(catFetch) as? [iMoney.Category] where !category.isEmpty else {
-                // find the category, make sure it's not empty
+            guard let items = try context.executeFetchRequest(itemFetch) as? [iMoney.Item] else {
                 return
             }
-            currentCategory = category[0]
-            guard let items = category[0].items?.allObjects as? [iMoney.Item] else {// Get all items
-                workingList = Array()
-                return
-            }
-            workingList = items// workingList
+            workingList = items
         } catch {// If error occurs
             print("No such category")
         }
@@ -169,3 +161,30 @@ class buyList {
     }
 }
 
+extension NSDate {
+    func startOfTheMonth() -> NSDate {
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year,.Month,.Day], fromDate: self)
+        components.day = 1
+        if let date = calendar.dateFromComponents(components) {
+            return date
+        } else {
+            return NSDate()
+        }
+    }
+    
+    func endOfTheMonth() -> NSDate {
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year,.Month,.Day], fromDate: self)
+        components.day = 1
+        guard let date = calendar.dateFromComponents(components) else {
+            return NSDate()
+        }
+        let month = NSDateComponents()
+        month.month = 1
+        guard let nextMonth = calendar.dateByAddingComponents(month, toDate: date, options: .MatchFirst) else {
+            return date
+        }
+        return nextMonth
+    }
+}
