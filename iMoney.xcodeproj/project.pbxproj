@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E34035FE1C570CC000DB1D90 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */; };
+		E35042AF1C67EB1700786446 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35042AE1C67EB1700786446 /* SummaryViewController.swift */; };
+		E35042B11C67ED3000786446 /* summaryCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35042B01C67ED3000786446 /* summaryCore.swift */; };
+		E35042B31C67EEDE00786446 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35042B21C67EEDE00786446 /* ListTableViewCell.swift */; };
 		E3E2DCF21C4C46F3006B3767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */; };
 		E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */; };
 		E3E2DD0A1C4C46F3006B3767 /* iMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD091C4C46F3006B3767 /* iMoneyTests.swift */; };
@@ -60,6 +63,9 @@
 		9481E22EDA9CDCA2AB2152BA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B0BA4BE120A97CD5F3F6DF7D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
+		E35042AE1C67EB1700786446 /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		E35042B01C67ED3000786446 /* summaryCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = summaryCore.swift; sourceTree = "<group>"; };
+		E35042B21C67EEDE00786446 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		E3E2DCEE1C4C46F3006B3767 /* iMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3E2DCF91C4C46F3006B3767 /* iMoney.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMoney.xcdatamodel; sourceTree = "<group>"; };
@@ -173,8 +179,11 @@
 			children = (
 				E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */,
 				E3E2DD471C4C4787006B3767 /* buyList.swift */,
+				E35042B01C67ED3000786446 /* summaryCore.swift */,
 				E3E2DD001C4C46F3006B3767 /* Info.plist */,
 				E3E2DD491C4C5048006B3767 /* addViewController.swift */,
+				E35042AE1C67EB1700786446 /* SummaryViewController.swift */,
+				E35042B21C67EEDE00786446 /* ListTableViewCell.swift */,
 				E3F94D841C4F265200F37F2C /* SummaryTableViewCell.swift */,
 				E3F94D861C4F265B00F37F2C /* DetailTableViewCell.swift */,
 				E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */,
@@ -412,8 +421,10 @@
 				E3EF15BE1C5C215700D7F9D1 /* Item.swift in Sources */,
 				E3F94D811C4D547800F37F2C /* MainTabBarController.swift in Sources */,
 				E34035FE1C570CC000DB1D90 /* CategoryViewCell.swift in Sources */,
+				E35042B31C67EEDE00786446 /* ListTableViewCell.swift in Sources */,
 				E3EF15B81C5C215700D7F9D1 /* Price.swift in Sources */,
 				E3E2DD3E1C4C471E006B3767 /* ViewController.swift in Sources */,
+				E35042B11C67ED3000786446 /* summaryCore.swift in Sources */,
 				E3EF15BC1C5C215700D7F9D1 /* Record.swift in Sources */,
 				E3EF15B71C5C215700D7F9D1 /* Price+CoreDataProperties.swift in Sources */,
 				E3E2DD481C4C4787006B3767 /* buyList.swift in Sources */,
@@ -423,6 +434,7 @@
 				E3E2DD3A1C4C471E006B3767 /* LeftViewController.swift in Sources */,
 				E3E2DD371C4C471E006B3767 /* HomeViewController.swift in Sources */,
 				E3E2DD4A1C4C5048006B3767 /* addViewController.swift in Sources */,
+				E35042AF1C67EB1700786446 /* SummaryViewController.swift in Sources */,
 				E3EF15BD1C5C215700D7F9D1 /* Item+CoreDataProperties.swift in Sources */,
 				E3E2DD321C4C471E006B3767 /* SwiftColors.swift in Sources */,
 			);

@@ -32,8 +32,6 @@ class MainTabBarController: UITabBarController {
             // 这里为了省事采用了简单的 addSubView 方案，真正项目中应该采用 TabBar Controller 自带的 self.viewControllers 方案
             Common.rootViewController.mainTabBarController.view.addSubview(Common.contactsVC.view)
             Common.rootViewController.mainTabBarController.view.bringSubviewToFront(Common.rootViewController.mainTabBarController.tabBar)
-        case 2:
-            print("Just like case 1 ↑")
         default:
             break
         }

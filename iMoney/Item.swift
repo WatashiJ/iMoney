@@ -35,6 +35,7 @@ class Item: NSManagedObject {
                 return nil
             }
             record.date = date// Set date of the record
+            record.month = "\(date.startOfTheMonth())"
             record.count = count// Set count
             record.cost = itemPrice// Connects price with the record
             record.deal = item// Connect item with the record

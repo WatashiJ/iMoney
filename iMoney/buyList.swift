@@ -55,7 +55,7 @@ class buyList {
     
     init(at listName: String) {// Switch to a category, init.
         workingList = Array()// working items
-        
+
         // View by All
         if listName == "All" && allItem != nil {// If chose All, show all categories
             for key in Array(allItem!.keys) {// For all keys
