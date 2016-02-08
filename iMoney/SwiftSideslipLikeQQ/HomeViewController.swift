@@ -39,6 +39,11 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
         navigationItem.title = currentCate
         itemList = buyList(at: currentCate)
         tableView.estimatedRowHeight = 50
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "tapSwitchedNotification:", name: "switchTap", object: nil)
+    }
+    
+    func tapSwitchedNotification(notification: NSNotification) {
+        panGesture.enabled = !panGesture.enabled
     }
 
     override func didReceiveMemoryWarning() {

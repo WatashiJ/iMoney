@@ -15,7 +15,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.tintColor = UIColor(red: 0/255, green: 150/255, blue: 136/255, alpha: 1)
+        view.tintColor = Common.commonColour
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,13 +25,16 @@ class MainTabBarController: UITabBarController {
     
     // 覆写了 TabBar 的点击效果
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        let notification = NSNotification(name: "switchTap", object: nil)
         switch item.tag {
         case 0:
             Common.contactsVC.view.removeFromSuperview()
+            NSNotificationCenter.defaultCenter().postNotification(notification)
         case 1:
             // 这里为了省事采用了简单的 addSubView 方案，真正项目中应该采用 TabBar Controller 自带的 self.viewControllers 方案
             Common.rootViewController.mainTabBarController.view.addSubview(Common.contactsVC.view)
             Common.rootViewController.mainTabBarController.view.bringSubviewToFront(Common.rootViewController.mainTabBarController.tabBar)
+            NSNotificationCenter.defaultCenter().postNotification(notification)
         default:
             break
         }
