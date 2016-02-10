@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-//TODO: - Summary
 //TODO: - iCloud
 //TODO: - Setting
 
@@ -102,6 +101,27 @@ class buyList {
     func addItem(item: iMoney.Item) {// Add item
         workingList?.append(item)// Add to the working List
         saveContext()// save
+    }
+    
+    func costOf(category cate: String, from start: NSDate, to end: NSDate) -> NSDecimalNumber {
+        let itemFetch = NSFetchRequest(entityName: "Item")// Category Name
+        itemFetch.predicate = NSPredicate(format: "(category.name = \"\(cate)\")AND(record.date >= %@)AND(record.date <= %@)", start, end)
+        do {
+            guard let items = try context.executeFetchRequest(itemFetch) as? [iMoney.Item] else {
+                return 0
+            }
+            var sum = NSDecimalNumber(integer: 0)
+            for item in items {// For each item
+                if item.price != nil && item.record != nil {
+                    let count = item.record!.count?.integerToDecimalNumber()// NSNumber to NSDecimalNumber
+                    let cost = item.price!.price!.decimalNumberByMultiplyingBy(count!)// Unit price * count
+                    sum = sum.decimalNumberByAdding(cost) // Total price instead of single price
+                }
+            }
+            return sum
+        } catch {
+            return 0
+        }
     }
     
     private func renewCategory() {

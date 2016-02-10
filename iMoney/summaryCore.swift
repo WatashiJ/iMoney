@@ -14,7 +14,7 @@ class summaryCore {
     let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
-    private lazy var months: [String]! = {
+    lazy var months: [String]! = {
         let fetch = NSFetchRequest(entityName: "Record")
         do {
             guard let result = try self.context.executeFetchRequest(fetch) as? [iMoney.Record] else {
@@ -73,5 +73,31 @@ class summaryCore {
         } catch {
             print("Error")
         }
+    }
+    
+    func itemsByMonth(from start: NSDate, to end: NSDate) -> [iMoney.Item] {
+        let fetch = NSFetchRequest(entityName: "Item")
+        fetch.predicate = NSPredicate(format: "record.date >= %@ AND record.date <= %@", start, end)
+        do {
+            let queryResult = try context.executeFetchRequest(fetch) as! [iMoney.Item]
+            if queryResult.isEmpty {
+                return []
+            } else {
+                return queryResult
+            }
+        } catch {
+            return []
+        }
+    }
+    
+    func sumByMonth(from start: NSDate, to end: NSDate) -> NSDecimalNumber {
+        let items = itemsByMonth(from: start, to: end)
+        var sum = NSDecimalNumber(integer: 0)
+        for item in items {
+            if let unitPrice = item.price!.price, let count = item.record!.count {
+                sum = sum.decimalNumberByAdding(unitPrice.decimalNumberByMultiplyingBy(count.integerToDecimalNumber()))
+            }
+        }
+        return sum
     }
 }

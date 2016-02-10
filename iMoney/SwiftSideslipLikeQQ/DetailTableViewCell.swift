@@ -36,14 +36,7 @@ class DetailTableViewCell: UITableViewCell {
     private func setEverything() {
         if iconView != nil {
             iconView.tintColor = Common.commonColour
-            switch title {
-            case "Vegetables":
-                iconView.image = UIImage(named: "vege")?.imageWithRenderingMode(.AlwaysTemplate)
-            case "Groceries":
-                iconView.image = UIImage(named: "grocery")?.imageWithRenderingMode(.AlwaysTemplate)
-            default:
-                break
-            }
+            iconView.image = Common.icons[title]
         }
     }
 

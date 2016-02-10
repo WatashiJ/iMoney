@@ -53,7 +53,11 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
     
     
     func newItemDidAdd(item: iMoney.Item) {
-        itemList.addItem(item)
+        if item.category?.name == currentCate {
+            itemList.addItem(item)
+        } else {
+            itemList.saveContext()
+        }
         tableView.reloadData()
     }
     
@@ -97,7 +101,8 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section != 0 {
-            return UITableViewAutomaticDimension
+//            return UITableViewAutomaticDimension
+            return 57
         } else {
             return 77
         }

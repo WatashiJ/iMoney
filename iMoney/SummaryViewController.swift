@@ -11,6 +11,7 @@ import UIKit
 class SummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var summaryDataSource: summaryCore!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,8 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
             return UITableViewCell()
         }
         cell.summaryLabel.text = summaryDataSource.allMonths()[indexPath.row]
+        cell.iconView.image = cell.iconView.image?.imageWithRenderingMode(.AlwaysTemplate)
+//        cell.iconView.tintColor = UIColor.
         return cell
     }
     
@@ -39,15 +42,39 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 57
+    }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let indexPath = tableView.indexPathForSelectedRow!
+        if let identifier = segue.identifier where identifier == "showDetails" {
+            let destinationVC = segue.destinationViewController as! DetailsViewController
+            destinationVC.navigationItem.title = summaryDataSource.allMonths()[indexPath.row]
+            guard let month = NSDate.dateFromString(summaryDataSource.months[indexPath.row]) else {
+                return
+            }
+            destinationVC.dateDuration = (month.startOfTheMonth(), month.endOfTheMonth())
+        }
     }
-    */
+}
 
+extension NSDate {
+    class func dateFromString(from: String) -> NSDate? {
+        let dateFmt = NSDateFormatter()
+        dateFmt.dateFormat = "yyyy-MM-dd"
+        let datePart = from.characters.split(" ").map(String.init)[0]
+        return dateFmt.dateFromString(datePart)
+    }
 }
