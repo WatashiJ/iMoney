@@ -15,6 +15,7 @@
 		E39C32C41C6C0E5F001BF01B /* addCateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32C31C6C0E5F001BF01B /* addCateViewController.swift */; };
 		E39C32C61C6C1471001BF01B /* addCateViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32C51C6C1471001BF01B /* addCateViewDelegate.swift */; };
 		E39C32C81C6C20B5001BF01B /* addCateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32C71C6C20B5001BF01B /* addCateViewCell.swift */; };
+		E39C32CC1C6C388C001BF01B /* FlyOver.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39C32CB1C6C388C001BF01B /* FlyOver.storyboard */; };
 		E3E2DCF21C4C46F3006B3767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */; };
 		E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */; };
 		E3E2DD0A1C4C46F3006B3767 /* iMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD091C4C46F3006B3767 /* iMoneyTests.swift */; };
@@ -74,6 +75,7 @@
 		E39C32C31C6C0E5F001BF01B /* addCateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCateViewController.swift; sourceTree = "<group>"; };
 		E39C32C51C6C1471001BF01B /* addCateViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCateViewDelegate.swift; sourceTree = "<group>"; };
 		E39C32C71C6C20B5001BF01B /* addCateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCateViewCell.swift; sourceTree = "<group>"; };
+		E39C32CB1C6C388C001BF01B /* FlyOver.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FlyOver.storyboard; sourceTree = "<group>"; };
 		E3E2DCEE1C4C46F3006B3767 /* iMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3E2DCF91C4C46F3006B3767 /* iMoney.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMoney.xcdatamodel; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				E3F94D841C4F265200F37F2C /* SummaryTableViewCell.swift */,
 				E3F94D861C4F265B00F37F2C /* DetailTableViewCell.swift */,
 				E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */,
+				E39C32CB1C6C388C001BF01B /* FlyOver.storyboard */,
 				E3E2DD231C4C471E006B3767 /* SwiftSideslipLikeQQ */,
 			);
 			path = iMoney;
@@ -348,6 +351,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39C32CC1C6C388C001BF01B /* FlyOver.storyboard in Resources */,
 				E3E2DD341C4C471E006B3767 /* LaunchScreen.xib in Resources */,
 				E3E2DD351C4C471E006B3767 /* Main.storyboard in Resources */,
 				E3E2DD381C4C471E006B3767 /* Images.xcassets in Resources */,

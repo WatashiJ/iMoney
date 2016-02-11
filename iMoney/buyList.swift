@@ -190,6 +190,11 @@ class buyList {
         saveContext()// Save
     }
     
+    func deleteItem(item: iMoney.Item) {
+        context.deleteObject(item)
+        saveContext()
+    }
+    
     func saveContext() {
         appDelegate.saveContext()
     }

@@ -108,12 +108,14 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

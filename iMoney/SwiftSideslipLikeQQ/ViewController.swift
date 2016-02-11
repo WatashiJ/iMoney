@@ -94,6 +94,8 @@ class ViewController: UIViewController {
         
         // 给主视图绑定 UIPanGestureRecognizer
         let panGesture = homeViewController.panGesture
+        panGesture.delaysTouchesBegan = false
+        panGesture.cancelsTouchesInView = false
         panGesture.addTarget(self, action: Selector("pan:"))
         mainView.addGestureRecognizer(panGesture)
         
