@@ -93,36 +93,18 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @IBAction func addCategories(sender: UIButton) {
-        let alert = UIAlertController(title: "Add", message: "Input a name for the category", preferredStyle: .Alert)
-        var name: String! = ""
-        alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            textField.placeholder = "Input name here"
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Confirm", style: .Default, handler: { [unowned self] action in
-            let textField = alert.textFields![0]
-            name = textField.text
-            guard let result = self.itemList.addCategory(by: name) else {
-                let fail = UIAlertController(title: "Error", message: "Some Error Occured", preferredStyle: .Alert)
-                fail.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(fail, animated: true, completion: nil)
-                return
-            }
-            if result == false {
-                let sameName = UIAlertController(title: "Warning", message: "There has been some category with the same name", preferredStyle: .Alert)
-                sameName.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(sameName, animated: true, completion: nil)
-                return
-            }
-            self.renewCategories()
-            self.tableView.reloadData()
-        }))
-        presentViewController(alert, animated: true, completion: nil)
+        let viewController = Common.rootViewController
+//        viewController.homeViewController.titleOfOtherPages = "Add Category"
+        viewController.homeViewController.performSegueWithIdentifier("addCategory", sender: self)
+        viewController.mainTabBarController.tabBar.hidden = true
+        viewController.mainTabBarController.selectedIndex = 0
+        Common.contactsVC.view.removeFromSuperview()
+        viewController.showHome()
     }
     
     @IBAction func settingButtonPressed(sender: UIButton) {
         let viewController = Common.rootViewController
-        viewController.homeViewController.titleOfOtherPages = "Setting"
+//        viewController.homeViewController.titleOfOtherPages = "Setting"
         viewController.homeViewController.performSegueWithIdentifier("showSetting", sender: self)
         viewController.mainTabBarController.tabBar.hidden = true
         viewController.mainTabBarController.selectedIndex = 0

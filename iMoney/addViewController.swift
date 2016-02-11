@@ -18,6 +18,7 @@ class addViewController: UIViewController {
     @IBOutlet weak var categoryField: UITextField!
     @IBOutlet weak var moneyField: UITextField!
     @IBOutlet weak var countField: UITextField!
+    @IBOutlet weak var vibrancyView: UIView!
     
     var cate: String!
     var money: NSDecimalNumber!
@@ -194,11 +195,11 @@ extension addViewController: UITextFieldDelegate {
     
     private func moveUpLabels(of textField: UITextField) {
         let label = UILabel(frame: textField.frame)
-        label.center.x -= 4
+//        label.center.x -= 10
         label.font = UIFont.systemFontOfSize(20, weight: 0.3) //UIFont.systemFontOfSize(20)
         
         label.text = textField.placeholder
-        view.addSubview(label)
+        vibrancyView.addSubview(label)
         let identifier = textField.placeholder!
         textField.placeholder = ""
         UIView.animateWithDuration(0.15, animations: {
@@ -222,8 +223,29 @@ extension addViewController: UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if string == "\n" {
             textField.resignFirstResponder()
-            moneyField.becomeFirstResponder()
+            if !textField.text!.isEmpty {
+                if setFields(by: textField.text!.trim(by: " ")) == false {
+                    moneyField.becomeFirstResponder()
+                }
+            }
         }
+        return true
+    }
+    
+    private func setFields(by name: String) -> Bool {
+        let list = buyList()
+        guard let item = list.searchItem(by: name) else {
+            return false
+        }
+        nameField.text = item.name
+        moveUpLabels(of: moneyField)
+        moneyField.text = "\(item.price!.price!)"
+        money = item.price!.price!
+        moveUpLabels(of: countField)
+        count = 1
+        countField.text = "1"
+        cate = item.category?.name!
+        categoryField.text = "\(item.category!.name!)"
         return true
     }
 }

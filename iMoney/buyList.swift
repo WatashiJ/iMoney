@@ -124,6 +124,20 @@ class buyList {
         }
     }
     
+    func searchItem(by name: String) -> iMoney.Item? {
+        let fetch = NSFetchRequest(entityName: "Item")
+        fetch.predicate = NSPredicate(format: "name CONTAINS[cd] \"\(name)\"")
+        do {
+            let item = try context.executeFetchRequest(fetch) as! [iMoney.Item]
+            if item.isEmpty {
+                return nil
+            }
+            return item[0]
+        } catch {
+            return nil
+        }
+    }
+    
     private func renewCategory() {
         let fetch = NSFetchRequest(entityName: "Category")
         guard let cates = try? context.executeFetchRequest(fetch) as? [iMoney.Category] else {// Get all categories

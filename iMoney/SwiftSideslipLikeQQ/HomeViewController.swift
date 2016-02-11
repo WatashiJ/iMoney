@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
     
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     private var itemList: buyList!
-    var titleOfOtherPages = ""
     
     var currentCate: String {
         set {
@@ -127,11 +126,30 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
                 destinationVC.delegate = self
             }
         } else if segue.identifier == "showSetting" {
-            if let a = segue.destinationViewController as? OtherPageViewController {
-                a.PageTitle = titleOfOtherPages
-            }
+
+        } else if segue.identifier == "addCategory" {
+            panGesture.enabled = false
+            let destinationVC = segue.destinationViewController as! addCateViewController
+            destinationVC.navigationItem.title = "Add Category"
+            destinationVC.delegate = self
         }
     }
-    
+}
 
+extension HomeViewController: addCateViewDelegate {
+    func addCateViewDidSubmit() {
+        panGesture.enabled = true
+        let viewController = Common.rootViewController
+        viewController.mainTabBarController.tabBar.hidden = false
+        viewController.mainTabBarController.selectedIndex = 0
+        viewController.showLeft()
+    }
+    
+    func addCateViewDidCanceled() {
+        self.panGesture.enabled = true
+        let viewController = Common.rootViewController
+        viewController.mainTabBarController.tabBar.hidden = false
+        viewController.mainTabBarController.selectedIndex = 0
+        viewController.showLeft()
+    }
 }
