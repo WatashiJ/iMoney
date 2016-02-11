@@ -142,7 +142,7 @@ extension HomeViewController: addCateViewDelegate {
         let viewController = Common.rootViewController
         viewController.mainTabBarController.tabBar.hidden = false
         viewController.mainTabBarController.selectedIndex = 0
-        viewController.showLeft()
+//        viewController.showLeft()
     }
     
     func addCateViewDidCanceled() {
@@ -150,6 +150,6 @@ extension HomeViewController: addCateViewDelegate {
         let viewController = Common.rootViewController
         viewController.mainTabBarController.tabBar.hidden = false
         viewController.mainTabBarController.selectedIndex = 0
-        viewController.showLeft()
+//        viewController.showLeft()
     }
 }

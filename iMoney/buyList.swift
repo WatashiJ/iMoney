@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-//TODO: - iCloud
+//TODO: - Categories
 //TODO: - Setting
 
 // Just a thought, delete all category and add one item to break the code. Worth a try
