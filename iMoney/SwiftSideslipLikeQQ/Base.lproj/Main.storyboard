@@ -290,7 +290,7 @@
                     <navigationItem key="navigationItem" id="L2n-Xk-sjs">
                         <barButtonItem key="backBarButtonItem" title="Back" id="O4c-ts-cHt"/>
                         <barButtonItem key="leftBarButtonItem" image="menu" id="X2w-fB-3sQ"/>
-                        <barButtonItem key="rightBarButtonItem" image="xingxing" id="sFN-Lg-wuy">
+                        <barButtonItem key="rightBarButtonItem" image="add" id="sFN-Lg-wuy">
                             <connections>
                                 <segue destination="jHN-GP-Eg5" kind="show" identifier="addSegue" id="TmC-qz-5L2"/>
                             </connections>
@@ -423,7 +423,7 @@
             </objects>
             <point key="canvasLocation" x="3244" y="339"/>
         </scene>
-        <!--New Item-->
+        <!--Add View Controller-->
         <scene sceneID="xSL-Kt-VMH">
             <objects>
                 <viewController id="eOH-5N-2CX" customClass="addViewController" customModule="iMoney" customModuleProvider="target" sceneMemberID="viewController">
@@ -459,7 +459,7 @@
                                                             <outlet property="delegate" destination="eOH-5N-2CX" id="9SF-tj-fkb"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksR-lb-FzN">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksR-lb-FzN">
                                                         <rect key="frame" x="25" y="156" width="550" height="24"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -468,7 +468,7 @@
                                                             <outlet property="delegate" destination="eOH-5N-2CX" id="3uW-q9-Erg"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Count" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RjT-x5-pn9">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RjT-x5-pn9">
                                                         <rect key="frame" x="25" y="214" width="550" height="24"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -544,19 +544,26 @@
                             <constraint firstItem="RMP-Oj-ey5" firstAttribute="top" secondItem="MZZ-eh-NTK" secondAttribute="bottom" constant="-64" id="ytF-AV-wBt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New Item" id="DMR-r3-Ukb">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="gIN-gj-iC2">
-                            <connections>
-                                <action selector="CancelButtonPressed:" destination="eOH-5N-2CX" id="bkN-3Q-wiB"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="LfN-0A-TZG">
+                    <navigationItem key="navigationItem" id="DMR-r3-Ukb">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="LfN-0A-TZG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="DoneButtonPressed:" destination="eOH-5N-2CX" id="EVe-VJ-9Op"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="YmZ-59-x3F">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IG2-Vl-Vkn">
+                                <rect key="frame" x="550" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="add"/>
+                                <connections>
+                                    <action selector="CancelButtonPressed:" destination="eOH-5N-2CX" eventType="touchUpInside" id="sME-uh-WEh"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="IG2-Vl-Vkn" id="KxQ-U7-e2K"/>
                         <outlet property="categoryField" destination="rCQ-ZR-8Kf" id="t7J-id-1ON"/>
                         <outlet property="countField" destination="RjT-x5-pn9" id="vYd-al-YOw"/>
                         <outlet property="dateField" destination="YaY-cs-y03" id="tNb-SX-f3V"/>
@@ -843,7 +850,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jHN-GP-Eg5" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k1Y-OD-9YC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="k1Y-OD-9YC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -887,6 +894,5 @@
         <image name="setting" width="30" height="30"/>
         <image name="summary" width="30" height="30"/>
         <image name="vege" width="30" height="30"/>
-        <image name="xingxing" width="26" height="27"/>
     </resources>
 </document>

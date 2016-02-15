@@ -103,13 +103,25 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func settingButtonPressed(sender: UIButton) {
-        let viewController = Common.rootViewController
-//        viewController.homeViewController.titleOfOtherPages = "Setting"
-        viewController.homeViewController.performSegueWithIdentifier("showSetting", sender: self)
-        viewController.mainTabBarController.tabBar.hidden = true
-        viewController.mainTabBarController.selectedIndex = 0
-        Common.contactsVC.view.removeFromSuperview()
-        viewController.showHome()
+//        let viewController = Common.rootViewController
+////        viewController.homeViewController.titleOfOtherPages = "Setting"
+//        viewController.homeViewController.performSegueWithIdentifier("showSetting", sender: self)
+//        viewController.mainTabBarController.tabBar.hidden = true
+//        viewController.mainTabBarController.selectedIndex = 0
+//        Common.contactsVC.view.removeFromSuperview()
+//        viewController.showHome()
+        rotateButton(sender, scale: -3 * M_PI / 4)
+    }
+    
+    private func rotateButton(button: UIButton, scale: Double) {
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.duration = 0.2
+        animation.repeatCount = 1
+        animation.fromValue = 0
+        animation.toValue = scale
+        animation.removedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        button.imageView?.layer.addAnimation(animation, forKey: "rotateAnimation")
     }
     // MARK: - Navigation
 

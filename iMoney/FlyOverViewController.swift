@@ -12,6 +12,9 @@ class FlyOverViewController: UIViewController {
     
     weak var delegate: FlyOverDelegate?
 
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +26,25 @@ class FlyOverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        popUpButtons()
+    }
+    
+    private func popUpButtons() {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.duration = 0.2
+        animation.repeatCount = 1
+        animation.autoreverses = true
+        
+        animation.fromValue = 0.4
+        animation.toValue = 1.1
+        
+        editButton.imageView?.layer.addAnimation(animation, forKey: "scaleAnimation")
+        deleteButton.imageView?.layer.addAnimation(animation, forKey: "scaleAnimation")
+    }
+    
     @IBAction func buttonPressed(sender: UIButton) {
         switch sender.tag {
         case 1: delegate?.FlyOverEditButtonDidPress(self)
@@ -31,6 +53,9 @@ class FlyOverViewController: UIViewController {
         }
     }
 
+    @IBAction func viewTapped(sender: UITapGestureRecognizer) {
+        delegate?.FlyOverViewDidTapped(self)
+    }
     /*
     // MARK: - Navigation
 

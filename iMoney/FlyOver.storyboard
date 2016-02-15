@@ -29,20 +29,6 @@
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="F4j-Az-4Pm">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uty-iA-dEW">
-                                                        <rect key="frame" x="367" y="358" width="50" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZK-8A-UZx">
-                                                        <rect key="frame" x="194" y="358" width="30" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
                                             </view>
                                             <vibrancyEffect>
                                                 <blurEffect style="light"/>
@@ -56,16 +42,20 @@
                                         <constraint firstAttribute="bottom" secondItem="B5i-6k-Yna" secondAttribute="bottom" id="ybM-a5-kPZ"/>
                                     </constraints>
                                 </view>
-                                <blurEffect style="dark"/>
+                                <gestureRecognizers/>
+                                <blurEffect style="light"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="36U-bp-wos" appends="YES" id="MXo-dQ-mpK"/>
+                                </connections>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEx-I4-J6F">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEx-I4-J6F" userLabel="Delete">
                                 <rect key="frame" x="350" y="258" width="83" height="83"/>
                                 <state key="normal" image="delete"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9tn-Jy-0a0" eventType="touchUpInside" id="mNK-Qk-4Yl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vax-t5-EdF">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vax-t5-EdF" userLabel="Edit">
                                 <rect key="frame" x="167" y="258" width="83" height="83"/>
                                 <state key="normal" image="edit">
                                     <color key="titleColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -74,6 +64,18 @@
                                     <action selector="buttonPressed:" destination="9tn-Jy-0a0" eventType="touchUpInside" id="XAm-Fh-00j"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uty-iA-dEW">
+                                <rect key="frame" x="367" y="349" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZK-8A-UZx">
+                                <rect key="frame" x="194" y="349" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZU-P1-hn5">
                                 <rect key="frame" x="270" y="270" width="60" height="60"/>
                                 <constraints>
@@ -87,20 +89,20 @@
                             <constraint firstItem="2bt-Jk-5bF" firstAttribute="leading" secondItem="iDs-Az-wor" secondAttribute="leadingMargin" constant="-20" id="4ai-sx-Pj1"/>
                             <constraint firstItem="vax-t5-EdF" firstAttribute="leading" secondItem="yZU-P1-hn5" secondAttribute="leading" constant="-20" id="4vz-aj-A3C"/>
                             <constraint firstItem="yZU-P1-hn5" firstAttribute="centerY" secondItem="iDs-Az-wor" secondAttribute="centerY" id="8Sw-3g-oPo"/>
+                            <constraint firstItem="BZK-8A-UZx" firstAttribute="centerX" secondItem="vax-t5-EdF" secondAttribute="centerX" id="I7O-C0-Mzu"/>
                             <constraint firstItem="oEx-I4-J6F" firstAttribute="leading" secondItem="yZU-P1-hn5" secondAttribute="trailing" constant="20" id="JpY-Si-hzX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2bt-Jk-5bF" secondAttribute="trailing" constant="-20" id="Pq9-kG-6oC"/>
                             <constraint firstItem="lws-fY-y1z" firstAttribute="top" secondItem="2bt-Jk-5bF" secondAttribute="bottom" id="ZaK-Q7-8ta"/>
                             <constraint firstItem="vax-t5-EdF" firstAttribute="trailing" secondItem="yZU-P1-hn5" secondAttribute="trailing" constant="-100" id="ant-aI-f1X"/>
-                            <constraint firstItem="uty-iA-dEW" firstAttribute="centerX" secondItem="oEx-I4-J6F" secondAttribute="centerX" id="k5h-Q1-Ehd"/>
+                            <constraint firstItem="uty-iA-dEW" firstAttribute="centerX" secondItem="oEx-I4-J6F" secondAttribute="centerX" id="l6e-sb-diE"/>
                             <constraint firstItem="2bt-Jk-5bF" firstAttribute="top" secondItem="di8-Xg-atd" secondAttribute="bottom" constant="-20" id="mEz-Bz-R9h"/>
-                            <constraint firstItem="BZK-8A-UZx" firstAttribute="centerX" secondItem="vax-t5-EdF" secondAttribute="centerX" id="nGb-3C-FAy"/>
                             <constraint firstItem="vax-t5-EdF" firstAttribute="centerY" secondItem="yZU-P1-hn5" secondAttribute="centerY" id="nkG-OB-Xkb"/>
+                            <constraint firstItem="uty-iA-dEW" firstAttribute="top" secondItem="oEx-I4-J6F" secondAttribute="bottom" constant="8" id="osW-nY-zK4"/>
                             <constraint firstItem="yZU-P1-hn5" firstAttribute="leading" secondItem="vax-t5-EdF" secondAttribute="trailing" constant="20" id="owA-fq-XTe"/>
+                            <constraint firstItem="BZK-8A-UZx" firstAttribute="top" secondItem="vax-t5-EdF" secondAttribute="bottom" constant="8" id="pxr-ca-whJ"/>
                             <constraint firstItem="yZU-P1-hn5" firstAttribute="centerX" secondItem="iDs-Az-wor" secondAttribute="centerX" id="qQp-WF-In2"/>
                             <constraint firstItem="oEx-I4-J6F" firstAttribute="centerY" secondItem="yZU-P1-hn5" secondAttribute="centerY" id="seM-7t-pCm"/>
-                            <constraint firstItem="BZK-8A-UZx" firstAttribute="top" secondItem="vax-t5-EdF" secondAttribute="bottom" constant="17" id="tNx-4B-1W6"/>
                             <constraint firstItem="vax-t5-EdF" firstAttribute="leading" secondItem="yZU-P1-hn5" secondAttribute="trailing" constant="-100" id="uDJ-Iz-CIA"/>
-                            <constraint firstItem="uty-iA-dEW" firstAttribute="top" secondItem="oEx-I4-J6F" secondAttribute="bottom" constant="17" id="zg9-pn-BIb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -110,8 +112,17 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="deleteButton" destination="oEx-I4-J6F" id="9hr-4z-0LX"/>
+                        <outlet property="editButton" destination="vax-t5-EdF" id="H4q-fl-YCD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbY-ak-mYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="36U-bp-wos">
+                    <connections>
+                        <action selector="viewTapped:" destination="9tn-Jy-0a0" id="p4h-fT-BdJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="247" y="301"/>
         </scene>

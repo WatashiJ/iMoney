@@ -26,14 +26,16 @@ class addViewController: UIViewController {
     var name: String!
     var count = 1
     
-    var newItem: Item!
-    var numOfCate: Int!
+    var edit = false
+    var indexOfEditingItem: Int?
     var nameOfCate: [String]!
     
     private var nameLabel: UILabel?
     private var priceLabel: UILabel?
     private var countLabel: UILabel?
     
+
+    @IBOutlet weak var cancelButton: UIButton!
     var datePicker: ActionSheetDatePicker!
     private var Context = 0
     
@@ -41,20 +43,58 @@ class addViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        dateField.text = NSDate().dateOnly
-        date = NSDate()
+        if date == nil {
+            dateField.text = NSDate().dateOnly
+        } else {
+            dateField.text = "\(date.dateOnly)"
+        }
         categoryField.text = cate ?? ""
+        nameField.text = name ?? ""
+        moneyField.text = "\(money)" == "nil" ? "":"\(money)"
+        countField.text = edit ? "\(count)":""
+        
+        transparentNavigationBar()
+        
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animateCancelButton(false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    private func transparentNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+    }
+    
+    private func animateCancelButton(clockWise: Bool) {
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        guard let layer = cancelButton.imageView?.layer else {return}
+        animation.duration = 0.2
+        animation.repeatCount = 1
+        animation.fromValue = 0
+        animation.toValue = clockWise ? (M_PI/2) : (-3 * M_PI / 4)
+        animation.removedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        layer.addAnimation(animation, forKey: "rotationAnimation")
+    }
+    
     @IBAction func CancelButtonPressed(sender: AnyObject) {
         nameField.delegate = nil
         moneyField.delegate = nil
-        dismissViewControllerAnimated(true, completion: nil)
+        animateCancelButton(true)
+        
+        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC)))
+        dispatch_after(delay, dispatch_get_main_queue()) { [unowned self] _ in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     @IBAction func DoneButtonPressed(sender: AnyObject) {
@@ -73,6 +113,7 @@ class addViewController: UIViewController {
         }
         if countField.text == "" {
             count = 1
+            countField.text = "1"
         } else {
             count = Int.init(countField.text!) ?? 1
         }
@@ -82,7 +123,7 @@ class addViewController: UIViewController {
             presentViewController(alert, animated: true, completion: nil)
         } else {
             if let newItem = iMoney.Item.initialize(name: name, category: cate, date: date, money: money, count: count) {
-                delegate?.newItemDidAdd(newItem)// Need to implement
+                delegate?.newItemDidAdd(newItem, editingMode: edit, at: indexOfEditingItem)// Need to implement
             }
             dismissViewControllerAnimated(true, completion:  nil)
         }
@@ -132,11 +173,12 @@ class addViewController: UIViewController {
     */
 
 }
-
+// MARK: - Add View Delegate
 protocol addViewControllerDelegate: class {
-    func newItemDidAdd(item: iMoney.Item)
+    func newItemDidAdd(item: iMoney.Item, editingMode: Bool, at index: Int?)
 }
 
+// MARK: - Extension of NSDate
 extension NSDate {
     func removeTime() -> NSDate {
         let dateFmt = NSDateFormatter()
@@ -152,6 +194,7 @@ extension NSDate {
     }
 }
 
+// MARK: - TextField override
 extension UITextField {
     override public func awakeFromNib() {
         super.awakeFromNib()
@@ -168,6 +211,7 @@ extension UITextField {
     }
 }
 
+// MARK: - TextField delegate
 extension addViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         moveDownLabels(of: textField)
@@ -197,10 +241,10 @@ extension addViewController: UITextFieldDelegate {
         let label = UILabel(frame: textField.frame)
 //        label.center.x -= 10
         label.font = UIFont.systemFontOfSize(20, weight: 0.3) //UIFont.systemFontOfSize(20)
-        
+        label.textColor = UIColor.whiteColor()
         label.text = textField.placeholder
         vibrancyView.addSubview(label)
-        let identifier = textField.placeholder!
+        let identifier = textField.tag
         textField.placeholder = ""
         UIView.animateWithDuration(0.15, animations: {
             () -> Void in
@@ -208,9 +252,9 @@ extension addViewController: UITextFieldDelegate {
             }) {
                 [unowned self] _ in
                 switch identifier {
-                case "Name": self.nameLabel = label
-                case "Price": self.priceLabel = label
-                case "Count": self.countLabel = label
+                case 0: self.nameLabel = label
+                case 1: self.priceLabel = label
+                case 2: self.countLabel = label
                 default: break
                 }
         }
@@ -250,6 +294,8 @@ extension addViewController: UITextFieldDelegate {
     }
 }
 
+
+// MARK: - Extension of String
 private extension String {
     mutating func trim(by component: String) -> String {
         if self.hasSuffix(component) && !self.isEmpty {
