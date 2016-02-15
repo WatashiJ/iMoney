@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
     
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     private var itemList: buyList!
+    private var flyOverVC: FlyOverViewController!
     
     var currentCate: String {
         set {
@@ -108,8 +109,11 @@ class HomeViewController: UIViewController, addViewControllerDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let flyOverView = UIStoryboard(name: "FlyOver", bundle: nil).instantiateViewControllerWithIdentifier("FlyOver") as! FlyOverViewController
+        flyOverVC = flyOverView
+        flyOverVC.delegate = self
+        flyOverVC.view.frame = view.frame
+        view.addSubview(flyOverVC.view)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -153,5 +157,24 @@ extension HomeViewController: addCateViewDelegate {
         viewController.mainTabBarController.tabBar.hidden = false
         viewController.mainTabBarController.selectedIndex = 0
 //        viewController.showLeft()
+    }
+}
+
+extension HomeViewController: FlyOverDelegate {
+    func FlyOverDeleteButtonDidPress(flyOverVC: FlyOverViewController) {
+        flyOverVC.view.removeFromSuperview()
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+            return
+        }
+        if let removeItem = itemList.workingList?.removeAtIndex(indexPath.row) {
+            itemList.deleteItem(removeItem)
+        }
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        let summaryCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))! as! SummaryTableViewCell
+        summaryCell.moneyLabel.text = "$" + "\(itemList.summaryOf(category: currentCate) ?? 0)"
+    }
+    
+    func FlyOverEditButtonDidPress(flyOverVC: FlyOverViewController) {
+        
     }
 }

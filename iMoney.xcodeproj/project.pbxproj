@@ -16,6 +16,8 @@
 		E39C32C61C6C1471001BF01B /* addCateViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32C51C6C1471001BF01B /* addCateViewDelegate.swift */; };
 		E39C32C81C6C20B5001BF01B /* addCateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32C71C6C20B5001BF01B /* addCateViewCell.swift */; };
 		E39C32CC1C6C388C001BF01B /* FlyOver.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E39C32CB1C6C388C001BF01B /* FlyOver.storyboard */; };
+		E39C32CE1C6CB678001BF01B /* FlyOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32CD1C6CB678001BF01B /* FlyOverViewController.swift */; };
+		E39C32D01C6CB684001BF01B /* FlyOverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32CF1C6CB684001BF01B /* FlyOverDelegate.swift */; };
 		E3E2DCF21C4C46F3006B3767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */; };
 		E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */; };
 		E3E2DD0A1C4C46F3006B3767 /* iMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD091C4C46F3006B3767 /* iMoneyTests.swift */; };
@@ -76,6 +78,8 @@
 		E39C32C51C6C1471001BF01B /* addCateViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCateViewDelegate.swift; sourceTree = "<group>"; };
 		E39C32C71C6C20B5001BF01B /* addCateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCateViewCell.swift; sourceTree = "<group>"; };
 		E39C32CB1C6C388C001BF01B /* FlyOver.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FlyOver.storyboard; sourceTree = "<group>"; };
+		E39C32CD1C6CB678001BF01B /* FlyOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyOverViewController.swift; sourceTree = "<group>"; };
+		E39C32CF1C6CB684001BF01B /* FlyOverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyOverDelegate.swift; sourceTree = "<group>"; };
 		E3E2DCEE1C4C46F3006B3767 /* iMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3E2DCF91C4C46F3006B3767 /* iMoney.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMoney.xcdatamodel; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 		E3F94D801C4D547800F37F2C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E3F94D841C4F265200F37F2C /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryTableViewCell.swift; path = SwiftSideslipLikeQQ/SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		E3F94D861C4F265B00F37F2C /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailTableViewCell.swift; path = SwiftSideslipLikeQQ/DetailTableViewCell.swift; sourceTree = "<group>"; };
+		E3FCB8111C721EF5006B6CBF /* iMoney.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iMoney.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +192,7 @@
 		E3E2DCF01C4C46F3006B3767 /* iMoney */ = {
 			isa = PBXGroup;
 			children = (
+				E3FCB8111C721EF5006B6CBF /* iMoney.entitlements */,
 				E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */,
 				E3E2DD471C4C4787006B3767 /* buyList.swift */,
 				E35042B01C67ED3000786446 /* summaryCore.swift */,
@@ -203,6 +209,8 @@
 				E3F94D861C4F265B00F37F2C /* DetailTableViewCell.swift */,
 				E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */,
 				E39C32CB1C6C388C001BF01B /* FlyOver.storyboard */,
+				E39C32CD1C6CB678001BF01B /* FlyOverViewController.swift */,
+				E39C32CF1C6CB684001BF01B /* FlyOverDelegate.swift */,
 				E3E2DD231C4C471E006B3767 /* SwiftSideslipLikeQQ */,
 			);
 			path = iMoney;
@@ -315,6 +323,12 @@
 				TargetAttributes = {
 					E3E2DCED1C4C46F3006B3767 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Z725SJ238D;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					E3E2DD041C4C46F3006B3767 = {
 						CreatedOnToolsVersion = 7.2;
@@ -440,8 +454,10 @@
 				E34035FE1C570CC000DB1D90 /* CategoryViewCell.swift in Sources */,
 				E35042B31C67EEDE00786446 /* ListTableViewCell.swift in Sources */,
 				E3EF15B81C5C215700D7F9D1 /* Price.swift in Sources */,
+				E39C32D01C6CB684001BF01B /* FlyOverDelegate.swift in Sources */,
 				E39C32C21C6BE23F001BF01B /* DetailsViewController.swift in Sources */,
 				E3E2DD3E1C4C471E006B3767 /* ViewController.swift in Sources */,
+				E39C32CE1C6CB678001BF01B /* FlyOverViewController.swift in Sources */,
 				E39C32C41C6C0E5F001BF01B /* addCateViewController.swift in Sources */,
 				E35042B11C67ED3000786446 /* summaryCore.swift in Sources */,
 				E3EF15BC1C5C215700D7F9D1 /* Record.swift in Sources */,
@@ -601,10 +617,14 @@
 			baseConfigurationReference = B0BA4BE120A97CD5F3F6DF7D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iMoney/iMoney.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iMoney/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.guofeng.Jch.iMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -613,10 +633,14 @@
 			baseConfigurationReference = 9481E22EDA9CDCA2AB2152BA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iMoney/iMoney.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iMoney/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.guofeng.Jch.iMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

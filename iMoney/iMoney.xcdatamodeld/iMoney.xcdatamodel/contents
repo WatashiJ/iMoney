@@ -6,9 +6,9 @@
     </entity>
     <entity name="Item" representedClassName=".Item" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
-        <relationship name="price" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Price" inverseName="buy" inverseEntity="Price" syncable="YES"/>
-        <relationship name="record" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Record" inverseName="deal" inverseEntity="Record" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
+        <relationship name="price" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Price" inverseName="buy" inverseEntity="Price" syncable="YES"/>
+        <relationship name="record" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Record" inverseName="deal" inverseEntity="Record" syncable="YES"/>
     </entity>
     <entity name="Price" representedClassName=".Price" syncable="YES">
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
