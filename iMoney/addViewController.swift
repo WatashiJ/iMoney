@@ -80,6 +80,7 @@ class addViewController: UIViewController {
     @IBAction func CancelButtonPressed(sender: AnyObject) {// Cancel button will dismiss the view and discard the info
         nameField.delegate = nil// The delegate pointing to nil will cause crash
         moneyField.delegate = nil
+        countField.delegate = nil
         animateCancelButton(true)// Animate back
         
         let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC)))// Delay 0.3 sec for the animation
@@ -95,12 +96,10 @@ class addViewController: UIViewController {
                 name = text
             }
         }
-        if money == nil {
-            if let text = moneyField.text {
-                let numFmt = NSNumberFormatter()
-                numFmt.generatesDecimalNumbers = true
-                money = numFmt.numberFromString(text) as? NSDecimalNumber ?? 0// Generate money, otherwise set to 0
-            }
+        if let moneyText = moneyField.text {
+            let numFmt = NSNumberFormatter()
+            numFmt.generatesDecimalNumbers = true
+            money = numFmt.numberFromString(moneyText) as? NSDecimalNumber ?? 0// Generate money, otherwise set to 0
         }
         if countField.text == "" {// Default value for count is 1
             count = 1

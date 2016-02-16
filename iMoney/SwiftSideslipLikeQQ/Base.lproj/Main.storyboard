@@ -415,7 +415,6 @@
                             <constraint firstItem="AKv-hw-SRD" firstAttribute="top" secondItem="LCC-VC-u4w" secondAttribute="bottom" id="zab-dV-ftW"/>
                         </constraints>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="2cp-tC-g7i" id="7SD-VQ-cFW"/>
                     </connections>

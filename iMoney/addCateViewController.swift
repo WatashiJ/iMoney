@@ -25,7 +25,7 @@ class addCateViewController: UIViewController, UICollectionViewDataSource, UICol
         confirmButton.tintColor = UIColor.whiteColor()
         self.navigationItem.setLeftBarButtonItem(confirmButton, animated: true)// Left button to confirm
         icons = Array(Common.icons.values)
-        self.navigationController?.transparentNavigationBar()
+//        self.navigationController?.transparentNavigationBar()
     }
 
     override func didReceiveMemoryWarning() {

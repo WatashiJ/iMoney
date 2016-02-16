@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-//TODO: - Categories
+//TODO: - Grouping
 //TODO: - Setting
 
 class buyList {
