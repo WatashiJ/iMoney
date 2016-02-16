@@ -10,8 +10,8 @@ import UIKit
 
 class SummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var summaryDataSource: summaryCore!
-    @IBOutlet weak var tableView: UITableView!
+    var summaryDataSource: summaryCore!// Module
+    @IBOutlet weak var tableView: UITableView!// tableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +29,13 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         guard let cell = tableView.dequeueReusableCellWithIdentifier("SummaryCell") as? ListTableViewCell else {
             return UITableViewCell()
         }
-        cell.summaryLabel.text = summaryDataSource.allMonths()[indexPath.row]
-        cell.iconView.image = cell.iconView.image?.imageWithRenderingMode(.AlwaysTemplate)
-//        cell.iconView.tintColor = UIColor.
+        cell.summaryLabel.text = summaryDataSource.allMonths()[indexPath.row]// Show month info
+        cell.iconView.image = cell.iconView.image?.imageWithRenderingMode(.AlwaysTemplate)// Change the colours for icons
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return summaryDataSource.allMonths().count
+        return summaryDataSource.allMonths().count// Month count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -53,25 +52,21 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
 
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         let indexPath = tableView.indexPathForSelectedRow!
-        if let identifier = segue.identifier where identifier == "showDetails" {
-            let destinationVC = segue.destinationViewController as! DetailsViewController
-            destinationVC.navigationItem.title = summaryDataSource.allMonths()[indexPath.row]
-            guard let month = NSDate.dateFromString(summaryDataSource.months[indexPath.row]) else {
+        if let identifier = segue.identifier where identifier == "showDetails" {// Show details
+            let destinationVC = segue.destinationViewController as! DetailsViewController// DetailsViewController
+            destinationVC.navigationItem.title = summaryDataSource.allMonths()[indexPath.row]// Set title
+            guard let month = NSDate.dateFromString(summaryDataSource.months[indexPath.row]) else {// Get date
                 return
             }
-            destinationVC.dateDuration = (month.startOfTheMonth(), month.endOfTheMonth())
+            destinationVC.dateDuration = (month.startOfTheMonth(), month.endOfTheMonth())// Set time duration
         }
     }
 }
 
 extension NSDate {
-    class func dateFromString(from: String) -> NSDate? {
+    class func dateFromString(from: String) -> NSDate? {// Get a date from string, by formatter
         let dateFmt = NSDateFormatter()
         dateFmt.dateFormat = "yyyy-MM-dd"
         let datePart = from.characters.split(" ").map(String.init)[0]

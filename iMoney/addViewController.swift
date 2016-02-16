@@ -10,57 +10,52 @@ import UIKit
 import ActionSheetPicker_3_0
 
 class addViewController: UIViewController {
-
-    weak var delegate: addViewControllerDelegate?
     
+    weak var delegate: addViewControllerDelegate?// Delegate, should be HomeViewController
+    
+    // MARK: Outlets
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var categoryField: UITextField!
     @IBOutlet weak var moneyField: UITextField!
     @IBOutlet weak var countField: UITextField!
     @IBOutlet weak var vibrancyView: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
     
+    private var nameLabel: UILabel?
+    private var priceLabel: UILabel?
+    private var countLabel: UILabel?
+    var datePicker: ActionSheetDatePicker!
+    
+    // MARK: modules
     var cate: String!
     var money: NSDecimalNumber!
     var date: NSDate!
     var name: String!
     var count = 1
-    
-    var edit = false
-    var indexOfEditingItem: Int?
     var nameOfCate: [String]!
     
-    private var nameLabel: UILabel?
-    private var priceLabel: UILabel?
-    private var countLabel: UILabel?
+    var edit = false // Switch determing if it's adding new item or modifying existing item
+    var indexOfEditingItem: Int?// index of the modifying item
     
-
-    @IBOutlet weak var cancelButton: UIButton!
-    var datePicker: ActionSheetDatePicker!
-    private var Context = 0
-    
+    // MARK: controller functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        if date == nil {
-            dateField.text = NSDate().dateOnly
-        } else {
-            dateField.text = "\(date.dateOnly)"
-        }
+        
+        // Set different text depends on it's adding new item or modifying an existing item
+        dateField.text = date == nil ? NSDate().dateOnly : "\(date.dateOnly)"
         categoryField.text = cate ?? ""
         nameField.text = name ?? ""
         moneyField.text = "\(money)" == "nil" ? "":"\(money)"
         countField.text = edit ? "\(count)":""
         
-        transparentNavigationBar()
-        
+        transparentNavigationBar()// Set navigation bar to transparent
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        animateCancelButton(false)
+        animateCancelButton(false)// Rotate the cancel button
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,39 +63,39 @@ class addViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func transparentNavigationBar() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+    private func transparentNavigationBar() {// Make navigation bar transparent
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)// Use transparent view as bg
+        navigationController?.navigationBar.shadowImage = UIImage()// Use transparent view as shadow
+        navigationController?.navigationBar.backgroundColor = UIColor.clearColor()// Set transparent colour
     }
     
-    private func animateCancelButton(clockWise: Bool) {
-        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        guard let layer = cancelButton.imageView?.layer else {return}
+    private func animateCancelButton(clockWise: Bool) {// Rotate the cancel button
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")// Rotate around z axis, like normal 2D animation
+        guard let layer = cancelButton.imageView?.layer else {return}// Get layer
         animation.duration = 0.2
         animation.repeatCount = 1
         animation.fromValue = 0
-        animation.toValue = clockWise ? (M_PI/2) : (-3 * M_PI / 4)
-        animation.removedOnCompletion = false
+        animation.toValue = clockWise ? (M_PI/2) : (-3 * M_PI / 4)// Clockwise will rotate back from X to 十
+        animation.removedOnCompletion = false// Keep the view after ratation
         animation.fillMode = kCAFillModeForwards
-        layer.addAnimation(animation, forKey: "rotationAnimation")
+        layer.addAnimation(animation, forKey: "rotationAnimation")// Animate
     }
     
-    @IBAction func CancelButtonPressed(sender: AnyObject) {
-        nameField.delegate = nil
+    @IBAction func CancelButtonPressed(sender: AnyObject) {// Cancel button will dismiss the view and discard the info
+        nameField.delegate = nil// The delegate pointing to nil will cause crash
         moneyField.delegate = nil
-        animateCancelButton(true)
+        animateCancelButton(true)// Animate back
         
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC)))
+        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC)))// Delay 0.3 sec for the animation
         dispatch_after(delay, dispatch_get_main_queue()) { [unowned self] _ in
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(true, completion: nil)// Dismiss the view
         }
     }
     
-    @IBAction func DoneButtonPressed(sender: AnyObject) {
-        resignAllFirstResponder()
+    @IBAction func DoneButtonPressed(sender: AnyObject) {// Done button will save information
+        resignAllFirstResponder()// Close keyboard
         if name == nil {
-            if let text = nameField.text?.trim(by: " ") {
+            if let text = nameField.text?.trim(by: " ") {// Delete the last space of name
                 name = text
             }
         }
@@ -108,51 +103,50 @@ class addViewController: UIViewController {
             if let text = moneyField.text {
                 let numFmt = NSNumberFormatter()
                 numFmt.generatesDecimalNumbers = true
-                money = numFmt.numberFromString(text) as? NSDecimalNumber ?? 0
+                money = numFmt.numberFromString(text) as? NSDecimalNumber ?? 0// Generate money, otherwise set to 0
             }
         }
-        if countField.text == "" {
+        if countField.text == "" {// Default value for count is 1
             count = 1
             countField.text = "1"
         } else {
-            count = Int.init(countField.text!) ?? 1
+            count = Int.init(countField.text!) ?? 1// Generate count from string, assign 1 to count if fails
         }
         if date == nil || cate == nil || name == nil || money == nil {
+            // All fields need to be filled, otherwise send an alert
             let alert = UIAlertController(title: "Warning", message: "Information is not filled", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
-        } else {
+        } else {// Everything is fine, then
             if let newItem = iMoney.Item.initialize(name: name, category: cate, date: date, money: money, count: count) {
-                delegate?.newItemDidAdd(newItem, editingMode: edit, at: indexOfEditingItem)// Need to implement
+                // Create a new item
+                delegate?.newItemDidAdd(newItem, editingMode: edit, at: indexOfEditingItem)// Send back to delegate
             }
-            dismissViewControllerAnimated(true, completion:  nil)
+            dismissViewControllerAnimated(true, completion:  nil)// Dismiss the view
         }
     }
     
-    private func resignAllFirstResponder() {
+    private func resignAllFirstResponder() {// Close keyboard
         nameField.resignFirstResponder()
         moneyField.resignFirstResponder()
         countField.resignFirstResponder()
     }
 
-    @IBAction func touchDownView(sender: AnyObject) {
-        resignAllFirstResponder()
-    }
-    @IBAction func dateFieldTouched() {
-        resignAllFirstResponder()
-        dateField.inputView = UIView()
+    @IBAction func dateFieldTouched() {// Touched date field
+        resignAllFirstResponder()// Close keyboard
+        dateField.inputView = UIView()// Prevent the keyboard pop up
         let datePicker = ActionSheetDatePicker(title: "Date", datePickerMode: .Date, selectedDate: NSDate(), doneBlock: {[unowned self] (picker, value, index) -> Void in
-            self.date = (value as! NSDate).removeTime()
-            self.dateField.text = self.date.dateOnly
+            self.date = (value as! NSDate).removeTime()// Only save date
+            self.dateField.text = self.date.dateOnly// Set text
             }, cancelBlock: { (picker) -> Void in
                 return
             }, origin: dateField)
-        datePicker.showActionSheetPicker()
+        datePicker.showActionSheetPicker()// Show picker
     }
     
-    @IBAction func cateFieldTouched() {
-        resignAllFirstResponder()
-        categoryField.inputView = UIView()
+    @IBAction func cateFieldTouched() {// Touched the cate field
+        resignAllFirstResponder()// Close keyboard
+        categoryField.inputView = UIView()// Prevent the keyboard pop up
         let catePicker = ActionSheetStringPicker(title: "Category", rows: nameOfCate, initialSelection: 0, doneBlock: {[unowned self] (picker, index, value)  -> Void in
             self.cate = self.nameOfCate[index]
             self.categoryField.text = self.cate
@@ -162,32 +156,23 @@ class addViewController: UIViewController {
         
         catePicker.showActionSheetPicker()
     }
-        /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 // MARK: - Add View Delegate
 protocol addViewControllerDelegate: class {
     func newItemDidAdd(item: iMoney.Item, editingMode: Bool, at index: Int?)
+    // the working item, editingMode decides it's adding new item or modifying an existing one
 }
 
 // MARK: - Extension of NSDate
 extension NSDate {
-    func removeTime() -> NSDate {
+    func removeTime() -> NSDate {// Only save date
         let dateFmt = NSDateFormatter()
-        dateFmt.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFmt.stringFromDate(self)
-        return dateFmt.dateFromString(dateString)!
+        dateFmt.dateFormat = "yyyy-MM-dd"// Formatter
+        let dateString = dateFmt.stringFromDate(self)// Get string
+        return dateFmt.dateFromString(dateString)!// Get date back from string
     }
     
-    var dateOnly: String {
+    var dateOnly: String {// Same as the function above, but it returns string
         let dateFmt = NSDateFormatter()
         dateFmt.dateFormat = "yyyy-MM-dd"
         return dateFmt.stringFromDate(self)
@@ -197,36 +182,38 @@ extension NSDate {
 // MARK: - TextField override
 extension UITextField {
     override public func awakeFromNib() {
+        // Drew an underline below textfields
         super.awakeFromNib()
         
-        let border = CALayer()
+        let border = CALayer()// New layer
         let width = CGFloat(0.7)
-        border.borderColor = UIColor.grayColor().CGColor
-        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width + 10, height: self.frame.size.height)
+        border.borderColor = UIColor.grayColor().CGColor// Colour
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width + 10, height: self.frame.size.height)// Set frame. y is the set the line
         
-        border.borderWidth = width
+        border.borderWidth = width// the height of the line
         
-        self.layer.addSublayer(border)
+        self.layer.addSublayer(border)// Add to sublayer
         self.layer.masksToBounds = true
     }
 }
 
 // MARK: - TextField delegate
 extension addViewController: UITextFieldDelegate {
+    
     func textFieldDidEndEditing(textField: UITextField) {
         moveDownLabels(of: textField)
     }
     
-    private func moveDownLabels(of textField: UITextField) {
-        if let labelForField = priceLabel ?? nameLabel ?? countLabel where textField.text == "" {
-            UIView.animateWithDuration(0.15, animations: {
+    private func moveDownLabels(of textField: UITextField) {// Move labels down
+        if let labelForField = priceLabel ?? nameLabel ?? countLabel where textField.text == "" {// Find the current label
+            UIView.animateWithDuration(0.15, animations: {// Animate
                 _ in
-                labelForField.center.y += 30
+                labelForField.center.y += 30// Move down
                 }) {
                     [unowned self] _ in
-                    textField.placeholder = labelForField.text
-                    labelForField.removeFromSuperview()
-                    if labelForField === self.priceLabel {
+                    textField.placeholder = labelForField.text// Reset the placeholder text
+                    labelForField.removeFromSuperview()// Remove label
+                    if labelForField === self.priceLabel {// Set the label to nil
                         self.priceLabel = nil
                     } else if labelForField === self.nameLabel {
                         self.nameLabel = nil
@@ -237,21 +224,20 @@ extension addViewController: UITextFieldDelegate {
         }
     }
     
-    private func moveUpLabels(of textField: UITextField) {
-        let label = UILabel(frame: textField.frame)
-//        label.center.x -= 10
-        label.font = UIFont.systemFontOfSize(20, weight: 0.3) //UIFont.systemFontOfSize(20)
-        label.textColor = UIColor.whiteColor()
-        label.text = textField.placeholder
-        vibrancyView.addSubview(label)
+    private func moveUpLabels(of textField: UITextField) {// Move up  the label
+        let label = UILabel(frame: textField.frame)// Create a new label based on the textField
+        label.font = UIFont.systemFontOfSize(20, weight: 0.3)// Set font
+        label.textColor = UIColor.whiteColor()// Set colour
+        label.text = textField.placeholder// Set text to the text of the placeholder
+        vibrancyView.addSubview(label)// Add to vibracyView
         let identifier = textField.tag
-        textField.placeholder = ""
-        UIView.animateWithDuration(0.15, animations: {
+        textField.placeholder = ""// Empty the placeholder
+        UIView.animateWithDuration(0.15, animations: {// Animate
             () -> Void in
-            label.center.y = label.center.y - 30
+            label.center.y = label.center.y - 30// Move up
             }) {
                 [unowned self] _ in
-                switch identifier {
+                switch identifier {// Set the pointer
                 case 0: self.nameLabel = label
                 case 1: self.priceLabel = label
                 case 2: self.countLabel = label
@@ -260,27 +246,28 @@ extension addViewController: UITextFieldDelegate {
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(textField: UITextField) {// Move up the label when the textfield starts being edited
         moveUpLabels(of: textField)
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if string == "\n" {
-            textField.resignFirstResponder()
-            if !textField.text!.isEmpty {
-                if setFields(by: textField.text!.trim(by: " ")) == false {
-                    moneyField.becomeFirstResponder()
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {// Check input
+        if string == "\n" {// When enter is pressed
+            textField.resignFirstResponder()// Close the keyboard
+            if !textField.text!.isEmpty {// It can only be the name field
+                if setFields(by: textField.text!.trim(by: " ")) == false {// If set field is false
+                    moneyField.becomeFirstResponder()// Start inputing money
                 }
             }
         }
         return true
     }
     
-    private func setFields(by name: String) -> Bool {
+    private func setFields(by name: String) -> Bool {// Auto detection for items
         let list = buyList()
-        guard let item = list.searchItem(by: name) else {
+        guard let item = list.searchItem(by: name) else {// Search for the item
             return false
         }
+        // Set all info about this item
         nameField.text = item.name
         moveUpLabels(of: moneyField)
         moneyField.text = "\(item.price!.price!)"
@@ -297,10 +284,10 @@ extension addViewController: UITextFieldDelegate {
 
 // MARK: - Extension of String
 private extension String {
-    mutating func trim(by component: String) -> String {
-        if self.hasSuffix(component) && !self.isEmpty {
-            self.removeAtIndex(self.endIndex.predecessor())
-            self.trim(by: component)
+    mutating func trim(by component: String) -> String {// Clear the last characters
+        if self.hasSuffix(component) && !self.isEmpty {// If it has the substring and it's not empty
+            self.removeAtIndex(self.endIndex.predecessor())// Clear the last one
+            self.trim(by: component)// Recursion
         }
         return self
     }

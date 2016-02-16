@@ -10,7 +10,7 @@ import UIKit
 
 class addCateViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    weak var delegate: addCateViewDelegate?
+    weak var delegate: addCateViewDelegate?// should be HomeViewController
     var icons: [UIImage]!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -19,9 +19,9 @@ class addCateViewController: UIViewController, UICollectionViewDataSource, UICol
 
         // Do any additional setup after loading the view.
         let cancelButton = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "backButtonDidClick")
-        self.navigationItem.setLeftBarButtonItem(cancelButton, animated: true)
+        self.navigationItem.setRightBarButtonItem(cancelButton, animated: true)// Right button to cancel
         let confirmButton = UIBarButtonItem(title: "Confirm", style: .Plain, target: self, action: "confirmButtonDidClick")
-        self.navigationItem.setRightBarButtonItem(confirmButton, animated: true)
+        self.navigationItem.setLeftBarButtonItem(confirmButton, animated: true)// Left button to confirm
         icons = Array(Common.icons.values)
     }
 

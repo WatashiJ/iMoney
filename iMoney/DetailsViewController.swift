@@ -19,39 +19,31 @@ class DetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        items = summaryDataSource.itemsByMonth(from: dateDuration.0, to: dateDuration.1)
-        categories = itemList.categoryList!
+        items = summaryDataSource.itemsByMonth(from: dateDuration.0, to: dateDuration.1)// Get all items from the time duration
+        categories = itemList.categoryList!// Find all categories
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return categories.count + 1
+        return categories.count + 1// summary for categories, and a total one
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("sumCell") as! SummaryTableViewCell
-        if indexPath.row == 0 {
+        if indexPath.row == 0 {// First section for total cost
             cell.summaryLabel.text = "Total Cost"
             cell.moneyLabel.text = "$\(summaryDataSource.sumByMonth(from: dateDuration.0, to: dateDuration.1))"
-        } else {
+        } else {// The other section for categories' cost
             cell.summaryLabel.text = categories[indexPath.row - 1].name
             cell.moneyLabel.text = "$\(itemList.costOf(category: categories[indexPath.row - 1].name!, from: dateDuration.0, to: dateDuration.1))"
             cell.iconView.image = Common.icons[categories[indexPath.row - 1].name!]

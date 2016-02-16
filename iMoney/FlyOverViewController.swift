@@ -10,6 +10,8 @@ import UIKit
 
 class FlyOverViewController: UIViewController {
     
+    // FlyOverView is used to edit or delete item in the HomeViewController, because of the pan gesture
+    
     weak var delegate: FlyOverDelegate?
 
     @IBOutlet weak var editButton: UIButton!
@@ -32,7 +34,7 @@ class FlyOverViewController: UIViewController {
         popUpButtons()
     }
     
-    private func popUpButtons() {
+    private func popUpButtons() {// Animate buttons
         let animation = CABasicAnimation(keyPath: "transform.scale")
         animation.duration = 0.2
         animation.repeatCount = 1

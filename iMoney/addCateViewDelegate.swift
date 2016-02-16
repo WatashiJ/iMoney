@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol addCateViewDelegate: class {
+protocol addCateViewDelegate: class {// Add category view protocol. 
     func addCateViewDidCanceled()
     func addCateViewDidSubmit()
 }

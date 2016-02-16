@@ -45,6 +45,7 @@
 		E3F94D811C4D547800F37F2C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F94D801C4D547800F37F2C /* MainTabBarController.swift */; };
 		E3F94D851C4F265200F37F2C /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F94D841C4F265200F37F2C /* SummaryTableViewCell.swift */; };
 		E3F94D871C4F265B00F37F2C /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F94D861C4F265B00F37F2C /* DetailTableViewCell.swift */; };
+		E3FCB8131C72BD00006B6CBF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FCB8121C72BCFF006B6CBF /* CloudKit.framework */; };
 		F8E768ED1253A7FB6AFB0FDB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8142B3E968C48E42BD6A35EB /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,7 @@
 		E3F94D841C4F265200F37F2C /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryTableViewCell.swift; path = SwiftSideslipLikeQQ/SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		E3F94D861C4F265B00F37F2C /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailTableViewCell.swift; path = SwiftSideslipLikeQQ/DetailTableViewCell.swift; sourceTree = "<group>"; };
 		E3FCB8111C721EF5006B6CBF /* iMoney.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iMoney.entitlements; sourceTree = "<group>"; };
+		E3FCB8121C72BCFF006B6CBF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8E768ED1253A7FB6AFB0FDB /* Pods.framework in Frameworks */,
+				E3FCB8131C72BD00006B6CBF /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +157,7 @@
 		D1F9991942D1163058221281 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E3FCB8121C72BCFF006B6CBF /* CloudKit.framework */,
 				8142B3E968C48E42BD6A35EB /* Pods.framework */,
 			);
 			name = Frameworks;

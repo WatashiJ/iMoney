@@ -13,8 +13,6 @@ import UIKit
 //TODO: - Categories
 //TODO: - Setting
 
-// Just a thought, delete all category and add one item to break the code. Worth a try
-
 class buyList {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate// AppDelegate
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext// Context
@@ -35,7 +33,7 @@ class buyList {
     
     var workingList: [iMoney.Item]?// The items in the current category
     var categoryList: [iMoney.Category]?// All categories
-    var workingItem: iMoney.Item?// The current item
+
     var namesOfCategories: [String] {// Get names of all categories
         var names = [String]()
         if categoryList == nil {// If there's no category
@@ -124,9 +122,9 @@ class buyList {
         }
     }
     
-    func searchItem(by name: String) -> iMoney.Item? {
+    func searchItem(by name: String) -> iMoney.Item? {// Search items from db
         let fetch = NSFetchRequest(entityName: "Item")
-        fetch.predicate = NSPredicate(format: "name CONTAINS[cd] \"\(name)\"")
+        fetch.predicate = NSPredicate(format: "name CONTAINS[cd] \"\(name)\"")// fuzzy search
         do {
             let item = try context.executeFetchRequest(fetch) as! [iMoney.Item]
             if item.isEmpty {
@@ -138,7 +136,7 @@ class buyList {
         }
     }
     
-    private func renewCategory() {
+    private func renewCategory() {// Refresh category array, used when category is updated
         let fetch = NSFetchRequest(entityName: "Category")
         guard let cates = try? context.executeFetchRequest(fetch) as? [iMoney.Category] else {// Get all categories
             categoryList = []
@@ -178,19 +176,15 @@ class buyList {
     func deleteCategory(by name: String) {// Delete a category
         let fetch = NSFetchRequest(entityName: "Category")
         fetch.predicate = NSPredicate(format: "name = \"\(name)\"")// Find the category
-        guard let category = (try? context.executeFetchRequest(fetch) as? [iMoney.Category]),
-        let items = category![0].items,
-        let its = items.allObjects as? [iMoney.Item] else {
+        guard let category = (try? context.executeFetchRequest(fetch) as? [iMoney.Category]) else {
+            // Since I've set cascade in the CoreData, so delete the category will automatically delete all items in the category
             return
-        }
-        for item in its {
-            context.deleteObject(item)// Delete all items
         }
         context.deleteObject(category![0])// Delete the category
         saveContext()// Save
     }
     
-    func deleteItem(item: iMoney.Item) {
+    func deleteItem(item: iMoney.Item) {// Delete item
         context.deleteObject(item)
         saveContext()
     }
@@ -201,10 +195,10 @@ class buyList {
 }
 
 extension NSDate {
-    func startOfTheMonth() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
+    func startOfTheMonth() -> NSDate {// Get the first day of the month
+        let calendar = NSCalendar.currentCalendar()// Calendar
         let components = calendar.components([.Year,.Month,.Day], fromDate: self)
-        components.day = 1
+        components.day = 1// First day
         if let date = calendar.dateFromComponents(components) {
             return date
         } else {
@@ -212,16 +206,17 @@ extension NSDate {
         }
     }
     
-    func endOfTheMonth() -> NSDate {
+    func endOfTheMonth() -> NSDate {// Get the first day of the next month
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Year,.Month,.Day], fromDate: self)
-        components.day = 1
+        components.day = 1// Set the day to the first day
         guard let date = calendar.dateFromComponents(components) else {
             return NSDate()
         }
         let month = NSDateComponents()
-        month.month = 1
+        month.month = 1// Set the month to one month
         guard let nextMonth = calendar.dateByAddingComponents(month, toDate: date, options: .MatchFirst) else {
+            // This month + one month
             return date
         }
         return nextMonth
