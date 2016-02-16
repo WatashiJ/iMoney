@@ -44,12 +44,13 @@ class addViewController: UIViewController {
         
         // Set different text depends on it's adding new item or modifying an existing item
         dateField.text = date == nil ? NSDate().dateOnly : "\(date.dateOnly)"
+        date = date ?? NSDate().removeTime()
         categoryField.text = cate ?? ""
         nameField.text = name ?? ""
         moneyField.text = "\(money)" == "nil" ? "":"\(money)"
         countField.text = edit ? "\(count)":""
         
-        transparentNavigationBar()// Set navigation bar to transparent
+        self.navigationController?.transparentNavigationBar()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -63,11 +64,6 @@ class addViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func transparentNavigationBar() {// Make navigation bar transparent
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)// Use transparent view as bg
-        navigationController?.navigationBar.shadowImage = UIImage()// Use transparent view as shadow
-        navigationController?.navigationBar.backgroundColor = UIColor.clearColor()// Set transparent colour
-    }
     
     private func animateCancelButton(clockWise: Bool) {// Rotate the cancel button
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")// Rotate around z axis, like normal 2D animation
@@ -112,7 +108,7 @@ class addViewController: UIViewController {
         } else {
             count = Int.init(countField.text!) ?? 1// Generate count from string, assign 1 to count if fails
         }
-        if date == nil || cate == nil || name == nil || money == nil {
+        if nameField.text!.isEmpty || moneyField.text!.isEmpty {
             // All fields need to be filled, otherwise send an alert
             let alert = UIAlertController(title: "Warning", message: "Information is not filled", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))

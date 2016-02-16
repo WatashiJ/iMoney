@@ -399,7 +399,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AKv-hw-SRD" firstAttribute="top" secondItem="zEL-h4-94C" secondAttribute="bottom" id="4RU-Hw-lwT"/>
                             <constraint firstItem="2cp-tC-g7i" firstAttribute="top" secondItem="Od0-tJ-oYC" secondAttribute="bottom" id="CFe-sg-Zu3"/>
@@ -415,6 +415,7 @@
                             <constraint firstItem="AKv-hw-SRD" firstAttribute="top" secondItem="LCC-VC-u4w" secondAttribute="bottom" id="zab-dV-ftW"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="2cp-tC-g7i" id="7SD-VQ-cFW"/>
                     </connections>
@@ -545,7 +546,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DMR-r3-Ukb">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="LfN-0A-TZG">
+                        <barButtonItem key="leftBarButtonItem" image="confirm" id="LfN-0A-TZG">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="DoneButtonPressed:" destination="eOH-5N-2CX" id="EVe-VJ-9Op"/>
@@ -888,6 +889,7 @@
         <image name="add" width="30" height="30"/>
         <image name="aurora" width="360" height="360"/>
         <image name="cateButtons" width="83" height="83"/>
+        <image name="confirm" width="30" height="30"/>
         <image name="menu" width="30" height="30"/>
         <image name="money" width="30" height="30"/>
         <image name="qq" width="30" height="30"/>

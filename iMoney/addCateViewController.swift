@@ -18,11 +18,14 @@ class addCateViewController: UIViewController, UICollectionViewDataSource, UICol
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let cancelButton = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "backButtonDidClick")
+        let cancelButton = UIBarButtonItem(image: UIImage(named: "add")?.imageWithRenderingMode(.AlwaysTemplate), style: .Plain, target: self, action: "backButtonDidClick")
+        cancelButton.tintColor = UIColor.whiteColor()
         self.navigationItem.setRightBarButtonItem(cancelButton, animated: true)// Right button to cancel
-        let confirmButton = UIBarButtonItem(title: "Confirm", style: .Plain, target: self, action: "confirmButtonDidClick")
+        let confirmButton = UIBarButtonItem(image: UIImage(named: "confirm")?.imageWithRenderingMode(.AlwaysTemplate), style: .Plain, target: self, action:  "confirmButtonDidClick")
+        confirmButton.tintColor = UIColor.whiteColor()
         self.navigationItem.setLeftBarButtonItem(confirmButton, animated: true)// Left button to confirm
         icons = Array(Common.icons.values)
+        self.navigationController?.transparentNavigationBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,3 +73,12 @@ class addCateViewController: UIViewController, UICollectionViewDataSource, UICol
     */
 
 }
+
+extension UINavigationController {
+    func transparentNavigationBar() {// Make navigation bar transparent
+        self.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)// Use transparent view as bg
+        self.navigationBar.shadowImage = UIImage()// Use transparent view as shadow
+        self.navigationBar.backgroundColor = UIColor.clearColor()// Set transparent colour
+    }
+}
+
