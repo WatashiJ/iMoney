@@ -94,8 +94,7 @@ class ViewController: UIViewController {
         
         // 给主视图绑定 UIPanGestureRecognizer
         let panGesture = homeViewController.panGesture
-        panGesture.delaysTouchesBegan = false
-        panGesture.cancelsTouchesInView = false
+        panGesture.delegate = self
         panGesture.addTarget(self, action: Selector("pan:"))
         mainView.addGestureRecognizer(panGesture)
         
@@ -113,13 +112,12 @@ class ViewController: UIViewController {
         let x = recongnizer.translationInView(self.view).x
         let trueDistance = distance + x // 实时距离
         let trueProportion = trueDistance / (Common.screenWidth*FullDistance)
-        if x <= 0 && distance <= 0 {
-            return
-        }
+//        if x <= 0 && distance <= 0 {
+//            return
+//        }
         
         // 如果 UIPanGestureRecognizer 结束，则激活自动停靠
         if recongnizer.state == UIGestureRecognizerState.Ended {
-
             if trueDistance > Common.screenWidth * (Proportion / 3) {
                 showLeft()
             } else {
@@ -195,3 +193,14 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let recognizer = gestureRecognizer as? UIPanGestureRecognizer {
+            let x = recognizer.translationInView(self.view).x
+            if distance <= 0 && x <= 0 {
+                return false
+            }
+        }
+        return true
+    }
+}

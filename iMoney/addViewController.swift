@@ -86,6 +86,7 @@ class addViewController: UIViewController {
         let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC)))// Delay 0.3 sec for the animation
         dispatch_after(delay, dispatch_get_main_queue()) { [unowned self] _ in
             self.dismissViewControllerAnimated(true, completion: nil)// Dismiss the view
+            self.delegate?.addViewDidCancel()
         }
     }
     
@@ -156,6 +157,7 @@ class addViewController: UIViewController {
 protocol addViewControllerDelegate: class {
     func newItemDidAdd(item: iMoney.Item, editingMode: Bool, at index: Int?)
     // the working item, editingMode decides it's adding new item or modifying an existing one
+    func addViewDidCancel()
 }
 
 // MARK: - Extension of NSDate

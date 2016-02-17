@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     private var itemList: buyList!
-    private var flyOverVC: FlyOverViewController!
     
     var currentCate: String {
         set {
@@ -35,7 +34,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.title = currentCate
         itemList = buyList(at: currentCate)
         tableView.estimatedRowHeight = 50
@@ -104,20 +103,42 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             return
         }
-        let flyOverView = UIStoryboard(name: "FlyOver", bundle: nil).instantiateViewControllerWithIdentifier("FlyOver") as! FlyOverViewController
-        flyOverVC = flyOverView
-        flyOverVC.delegate = self
-        flyOverVC.view.frame = view.frame
-        flyOverVC.view.layer.opacity = 0.2
-        UIApplication.sharedApplication().keyWindow?.addSubview(self.flyOverVC.view)
-        UIView.animateWithDuration(0.2, animations: {
-            [unowned self] _ in
-            self.flyOverVC.view.layer.opacity = 0.9
-            })
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
+    }
+    
+    
+    // Override to support conditional editing of the table view.
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    // Return false if you do not want the specified item to be editable.
+        return indexPath.section != 0
+    }
+    
+    func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: " Edit ") {
+            [unowned self] (rowAction, indexPath) -> Void  in
+            let editItem = self.itemList.workingList![indexPath.row]
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.performSegueWithIdentifier("addSegue", sender: editItem)
+        }
+        edit.backgroundColor = Common.commonColour
+        let delete = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") {
+            [unowned self] (rowAction, indexPath) -> Void in
+            guard let removeItem = self.itemList.workingList?.removeAtIndex(indexPath.row) else { return }
+            self.itemList.deleteItem(removeItem)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            let summaryCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))! as! SummaryTableViewCell
+            summaryCell.moneyLabel.text = "$" + "\(self.itemList.summaryOf(category: self.currentCate) ?? 0)"
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        return [delete,edit]
     }
     
     // MARK: - Navigation
@@ -170,39 +191,6 @@ extension HomeViewController: addCateViewDelegate {
     }
 }
 
-extension HomeViewController: FlyOverDelegate {
-    func FlyOverDeleteButtonDidPress(flyOverVC: FlyOverViewController) {
-        guard let indexPath = tableView.indexPathForSelectedRow else {
-            return
-        }
-        if let removeItem = itemList.workingList?.removeAtIndex(indexPath.row) {
-            itemList.deleteItem(removeItem)
-        }
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        let summaryCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))! as! SummaryTableViewCell
-        summaryCell.moneyLabel.text = "$" + "\(itemList.summaryOf(category: currentCate) ?? 0)"
-        FlyOverViewDidTapped(flyOverVC)
-    }
-    
-    func FlyOverEditButtonDidPress(flyOverVC: FlyOverViewController) {
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let modifyItem = itemList.workingList![indexPath.row]
-        FlyOverViewDidTapped(flyOverVC)
-        performSegueWithIdentifier("addSegue", sender: modifyItem)
-    }
-    
-    func FlyOverViewDidTapped(flyOverVC: FlyOverViewController) {
-        UIView.animateWithDuration(0.2, animations: {
-            _ in
-            flyOverVC.view.layer.opacity = 0.2
-            }) {
-            _ in
-            flyOverVC.view.removeFromSuperview()
-        }
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-}
 
 extension HomeViewController: addViewControllerDelegate {
     func newItemDidAdd(item: iMoney.Item, editingMode: Bool, at index: Int?) {
@@ -216,6 +204,11 @@ extension HomeViewController: addViewControllerDelegate {
         }
         itemList.saveContext()
         tableView.reloadData()
+        tableView.setEditing(false, animated: true)
+    }
+    
+    func addViewDidCancel() {
+        tableView.setEditing(false, animated: true)        
     }
 }
 
