@@ -32,7 +32,7 @@ class addViewController: UIViewController {
     var money: NSDecimalNumber!
     var date: NSDate!
     var name: String!
-    var count = 1
+    var count: NSDecimalNumber = 1
     var nameOfCate: [String]!
     
     var edit = false // Switch determing if it's adding new item or modifying existing item
@@ -51,6 +51,7 @@ class addViewController: UIViewController {
         countField.text = edit ? "\(count)":""
         
         self.navigationController?.transparentNavigationBar()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -106,7 +107,7 @@ class addViewController: UIViewController {
             count = 1
             countField.text = "1"
         } else {
-            count = Int.init(countField.text!) ?? 1// Generate count from string, assign 1 to count if fails
+            count = NSDecimalNumber(string: countField.text!) ?? 1// Generate count from string, assign 1 to count if fails
         }
         if nameField.text!.isEmpty || moneyField.text!.isEmpty {
             // All fields need to be filled, otherwise send an alert
@@ -276,6 +277,8 @@ extension addViewController: UITextFieldDelegate {
         categoryField.text = "\(item.category!.name!)"
         return true
     }
+    
+    
 }
 
 

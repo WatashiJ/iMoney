@@ -12,7 +12,7 @@ import CoreData
 
 class Item: NSManagedObject {
 
-    class func initialize(name name: String, category: String, date: NSDate, money: NSDecimalNumber, count: Int) -> iMoney.Item? {
+    class func initialize(name name: String, category: String, date: NSDate, money: NSDecimalNumber, count: NSDecimalNumber) -> iMoney.Item? {
         // Init function
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate// App delegate
         let context = appDelegate.managedObjectContext// Context
@@ -51,14 +51,8 @@ class Item: NSManagedObject {
             return ""
         }
         let totalPrice: NSDecimalNumber!
-        let unit = count.integerToDecimalNumber()
+        let unit = count
         totalPrice = unitPrice.decimalNumberByMultiplyingBy(unit)
         return "\(totalPrice)"
-    }
-}
-
-extension NSNumber {
-    func integerToDecimalNumber() -> NSDecimalNumber {// A function translates NSNumber to NSDecimalNumber
-        return NSDecimalNumber(integer: (self as Int))
     }
 }

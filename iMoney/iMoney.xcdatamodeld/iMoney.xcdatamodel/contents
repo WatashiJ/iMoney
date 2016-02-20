@@ -16,7 +16,7 @@
         <relationship name="record" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Record" inverseName="cost" inverseEntity="Record" syncable="YES"/>
     </entity>
     <entity name="Record" representedClassName=".Record" syncable="YES">
-        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="Decimal" defaultValueString="0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cost" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Price" inverseName="record" inverseEntity="Price" syncable="YES"/>
@@ -26,6 +26,6 @@
         <element name="Category" positionX="-351" positionY="-28" width="128" height="73"/>
         <element name="Item" positionX="-153" positionY="-36" width="128" height="105"/>
         <element name="Price" positionX="52" positionY="-135" width="128" height="88"/>
-        <element name="Record" positionX="43" positionY="54" width="128" height="118"/>
+        <element name="Record" positionX="43" positionY="54" width="128" height="120"/>
     </elements>
 </model>

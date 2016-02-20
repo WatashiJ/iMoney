@@ -10,9 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-//TODO: - Grouping
-//TODO: - Setting
-
 class buyList {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate// AppDelegate
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext// Context
@@ -31,7 +28,25 @@ class buyList {
         return all// Return
     }
     
-    var workingList: [iMoney.Item]?// The items in the current category
+    var workingList: [iMoney.Item]? {
+        didSet {
+            if workingList != nil {
+                groupByDate(list: workingList!)
+            }
+        }
+    }// The items in the current category
+    var listWithDate: [NSDate: [iMoney.Item]]?
+    var dateForTheList: [NSDate] {
+        if listWithDate != nil {
+            return Array(listWithDate!.keys).sort({ (date1, date2) -> Bool in
+                let duration1 = date1.timeIntervalSinceNow
+                let duration2 = date2.timeIntervalSinceNow
+                return duration1 > duration2
+            })
+        } else {
+            return []
+        }
+    }
     var categoryList: [iMoney.Category]?// All categories
 
     var namesOfCategories: [String] {// Get names of all categories
@@ -71,13 +86,32 @@ class buyList {
                 return
             }
             workingList = items
+            groupByDate(list: workingList!)
         } catch {// If error occurs
             print("No such category")
         }
+
     }
     
     init() {
         renewCategory()// Reparse all items in the category
+    }
+    
+    private func groupByDate(list workingList: [iMoney.Item]) {
+        let userDefault = NSUbiquitousKeyValueStore.defaultStore()
+        guard userDefault.boolForKey("groupByDate") == true else { return }
+        var dates = [NSDate]()
+        if listWithDate == nil {
+            listWithDate = Dictionary()
+        }
+        for item in workingList {
+            if let date = item.record?.date where !dates.contains(date) {
+                dates.append(date)
+            }
+        }
+        for date in dates {
+            listWithDate![date] = workingList.filter { $0.record?.date == date }
+        }
     }
     
     func addCategory(by name: String) -> Bool? {// Add a category
@@ -111,7 +145,7 @@ class buyList {
             var sum = NSDecimalNumber(integer: 0)
             for item in items {// For each item
                 if item.price != nil && item.record != nil {
-                    let count = item.record!.count?.integerToDecimalNumber()// NSNumber to NSDecimalNumber
+                    let count = item.record!.count// NSNumber to NSDecimalNumber
                     let cost = item.price!.price!.decimalNumberByMultiplyingBy(count!)// Unit price * count
                     sum = sum.decimalNumberByAdding(cost) // Total price instead of single price
                 }
@@ -164,7 +198,7 @@ class buyList {
         if let itemsIn = cate![0].items?.allObjects as? [iMoney.Item] {// Get all items
             for item in itemsIn {// For each item
                 if item.price != nil && item.record != nil {
-                    let count = item.record!.count?.integerToDecimalNumber()// NSNumber to NSDecimalNumber
+                    let count = item.record!.count// NSNumber to NSDecimalNumber
                     let cost = item.price!.price!.decimalNumberByMultiplyingBy(count!)// Unit price * count
                     sum = sum.decimalNumberByAdding(cost) // Total price instead of single price
                 }

@@ -26,7 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 vege.name = "Vegetables"
                 grocery.name = "Groceries"
             }
-            
+        }
+        if NSUbiquitousKeyValueStore.defaultStore().stringForKey("currentCate") == nil {
+            NSUbiquitousKeyValueStore.defaultStore().setString("Groceries", forKey: "currentCate")
         }
         saveContext()// Save
         return true

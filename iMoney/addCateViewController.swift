@@ -18,16 +18,18 @@ class addCateViewController: UIViewController, UICollectionViewDataSource, UICol
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let cancelButton = UIBarButtonItem(image: UIImage(named: "add")?.imageWithRenderingMode(.AlwaysTemplate), style: .Plain, target: self, action: "backButtonDidClick")
-        cancelButton.tintColor = UIColor.whiteColor()
+        let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel")?.imageWithRenderingMode(.AlwaysTemplate), style: .Plain, target: self, action: "backButtonDidClick")
         self.navigationItem.setRightBarButtonItem(cancelButton, animated: true)// Right button to cancel
         let confirmButton = UIBarButtonItem(image: UIImage(named: "confirm")?.imageWithRenderingMode(.AlwaysTemplate), style: .Plain, target: self, action:  "confirmButtonDidClick")
-        confirmButton.tintColor = UIColor.whiteColor()
         self.navigationItem.setLeftBarButtonItem(confirmButton, animated: true)// Left button to confirm
         icons = Array(Common.icons.values)
 //        self.navigationController?.transparentNavigationBar()
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -19,17 +19,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var currentCate: String {
         set {
-            let userDefault = NSUserDefaults.standardUserDefaults()
-            userDefault.setObject(newValue, forKey: "currentCate")
+            let userDefault = NSUbiquitousKeyValueStore.defaultStore()
+            userDefault.setString(newValue, forKey: "currentCate")
             userDefault.synchronize()
             itemList = buyList(at: newValue)
             if tableView != nil {
                 tableView.reloadData()
             }
         } get {
-            let userDefault = NSUserDefaults.standardUserDefaults()
-            return (userDefault.objectForKey("currentCate") as? String) ?? ""
+            let userDefault = NSUbiquitousKeyValueStore.defaultStore()
+            return userDefault.stringForKey("currentCate") ?? ""
         }
+    }
+    
+    var groupByDate: Bool {
+        let userDefault = NSUbiquitousKeyValueStore.defaultStore()
+        return userDefault.boolForKey("groupByDate")
     }
     
     override func viewDidLoad() {
@@ -63,7 +68,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.summaryLabel.text = "Summary of \(currentCate)"
             cell.moneyLabel.text = "$" + "\(itemList.summaryOf(category: currentCate) ?? 0)"
             return cell
-        } else {
+        } else if groupByDate == false {
             guard let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as? DetailTableViewCell else {
                 let tempCell = UITableViewCell()
                 tempCell.textLabel?.text = (itemList.workingList![indexPath.row].name) ?? ""
@@ -72,6 +77,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.title = currentCate
             cell.itemLabel.text = itemList.workingList![indexPath.row].name
             let price = itemList.workingList![indexPath.row].totalPrice()
+            cell.moneyLabel.text = "$" + price
+            
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as? DetailTableViewCell else {
+                let tempCell = UITableViewCell()
+                tempCell.textLabel?.text = (itemList.workingList![indexPath.row].name) ?? ""
+                return tempCell
+            }
+            cell.title = currentCate
+            let date = itemList.dateForTheList[indexPath.section - 1]
+            cell.itemLabel.text = itemList.listWithDate![date]![indexPath.row].name
+            let price = itemList.listWithDate![date]![indexPath.row].totalPrice()
             cell.moneyLabel.text = "$" + price
             
             return cell
@@ -84,8 +102,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         if section == 0 {
             return 1
-        } else {
+        } else if groupByDate == false {
             return itemList.workingList?.count ?? 0
+        } else {
+            let date = itemList.dateForTheList[section - 1]
+            return itemList.listWithDate![date]!.count ?? 0
         }
     }
     
@@ -98,6 +119,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return groupByDate && !(section == 0) ? 30 : 0
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if groupByDate == false || section == 0 {
+            return ""
+        }
+        return itemList.dateForTheList[section - 1].dateOnly
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -107,7 +139,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        if groupByDate == false {
+            return 2
+        } else {
+            guard let keysCount = itemList.listWithDate?.keys.count else { return 2 }
+            return 1 + keysCount
+        }
     }
     
     
@@ -154,7 +191,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if let item = sender as? iMoney.Item {
                     destinationVC.edit = true
                     destinationVC.indexOfEditingItem = itemList.workingList?.indexOf(item)
-                    destinationVC.count = (item.record?.count?.integerValue)!
+                    destinationVC.count = item.record?.count ?? 1
                     destinationVC.name = item.name
                     destinationVC.date = item.record?.date
                     destinationVC.money = item.price?.price
@@ -163,7 +200,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
         } else if segue.identifier == "showSetting" {
-
+            panGesture.enabled = false
+            let destinationVC = segue.destinationViewController as! SettingViewController
+            destinationVC.navigationItem.title = "Setting"
         } else if segue.identifier == "addCategory" {
             panGesture.enabled = false
             let destinationVC = segue.destinationViewController as! addCateViewController
@@ -172,6 +211,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 }
+
+// MARK: Delegates
 
 extension HomeViewController: addCateViewDelegate {
     func addCateViewDidSubmit() {

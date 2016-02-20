@@ -103,14 +103,16 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func settingButtonPressed(sender: UIButton) {
-//        let viewController = Common.rootViewController
-////        viewController.homeViewController.titleOfOtherPages = "Setting"
-//        viewController.homeViewController.performSegueWithIdentifier("showSetting", sender: self)
-//        viewController.mainTabBarController.tabBar.hidden = true
-//        viewController.mainTabBarController.selectedIndex = 0
-//        Common.contactsVC.view.removeFromSuperview()
-//        viewController.showHome()
         rotateButton(sender, scale: -3 * M_PI / 4)
+        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC)))
+        dispatch_after(delay, dispatch_get_main_queue()) { _ in
+            let viewController = Common.rootViewController
+            viewController.homeViewController.performSegueWithIdentifier("showSetting", sender: self)
+            viewController.mainTabBarController.tabBar.hidden = true
+            viewController.mainTabBarController.selectedIndex = 0
+            Common.contactsVC.view.removeFromSuperview()
+            viewController.showHome()
+        }
     }
     
     private func rotateButton(button: UIButton, scale: Double) {

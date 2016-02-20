@@ -96,7 +96,7 @@ class summaryCore {// Module for the summary part
         var sum = NSDecimalNumber(integer: 0)// Sum
         for item in items {// Sum up
             if let unitPrice = item.price!.price, let count = item.record!.count {
-                sum = sum.decimalNumberByAdding(unitPrice.decimalNumberByMultiplyingBy(count.integerToDecimalNumber()))
+                sum = sum.decimalNumberByAdding(unitPrice.decimalNumberByMultiplyingBy(count))
             }
         }
         return sum

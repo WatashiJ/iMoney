@@ -2,7 +2,7 @@
 //  Record+CoreDataProperties.swift
 //  
 //
-//  Created by Yaxin Cheng on 2016-02-07.
+//  Created by Yaxin Cheng on 2016-02-20.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,7 +14,7 @@ import CoreData
 
 extension Record {
 
-    @NSManaged var count: NSNumber?
+    @NSManaged var count: NSDecimalNumber?
     @NSManaged var date: NSDate?
     @NSManaged var month: String?
     @NSManaged var cost: Price?

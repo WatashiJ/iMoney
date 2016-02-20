@@ -15,6 +15,7 @@
 		E39C32C41C6C0E5F001BF01B /* addCateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32C31C6C0E5F001BF01B /* addCateViewController.swift */; };
 		E39C32C61C6C1471001BF01B /* addCateViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32C51C6C1471001BF01B /* addCateViewDelegate.swift */; };
 		E39C32C81C6C20B5001BF01B /* addCateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C32C71C6C20B5001BF01B /* addCateViewCell.swift */; };
+		E3B66C541C78FAF1007965E9 /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66C531C78FAF1007965E9 /* Record+CoreDataProperties.swift */; };
 		E3E2DCF21C4C46F3006B3767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */; };
 		E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */; };
 		E3E2DD0A1C4C46F3006B3767 /* iMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD091C4C46F3006B3767 /* iMoneyTests.swift */; };
@@ -31,11 +32,12 @@
 		E3E2DD3E1C4C471E006B3767 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD311C4C471E006B3767 /* ViewController.swift */; };
 		E3E2DD481C4C4787006B3767 /* buyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD471C4C4787006B3767 /* buyList.swift */; };
 		E3E2DD4A1C4C5048006B3767 /* addViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E2DD491C4C5048006B3767 /* addViewController.swift */; };
+		E3E630671C78F0570014FDDD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E630661C78F0570014FDDD /* SettingViewController.swift */; };
+		E3E630691C78F0C50014FDDD /* SwitchSettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E630681C78F0C50014FDDD /* SwitchSettingViewCell.swift */; };
 		E3EF15B71C5C215700D7F9D1 /* Price+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EF15AF1C5C215700D7F9D1 /* Price+CoreDataProperties.swift */; };
 		E3EF15B81C5C215700D7F9D1 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EF15B01C5C215700D7F9D1 /* Price.swift */; };
 		E3EF15B91C5C215700D7F9D1 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EF15B11C5C215700D7F9D1 /* Category+CoreDataProperties.swift */; };
 		E3EF15BA1C5C215700D7F9D1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EF15B21C5C215700D7F9D1 /* Category.swift */; };
-		E3EF15BB1C5C215700D7F9D1 /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EF15B31C5C215700D7F9D1 /* Record+CoreDataProperties.swift */; };
 		E3EF15BC1C5C215700D7F9D1 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EF15B41C5C215700D7F9D1 /* Record.swift */; };
 		E3EF15BD1C5C215700D7F9D1 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EF15B51C5C215700D7F9D1 /* Item+CoreDataProperties.swift */; };
 		E3EF15BE1C5C215700D7F9D1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EF15B61C5C215700D7F9D1 /* Item.swift */; };
@@ -75,6 +77,7 @@
 		E39C32C31C6C0E5F001BF01B /* addCateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCateViewController.swift; sourceTree = "<group>"; };
 		E39C32C51C6C1471001BF01B /* addCateViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCateViewDelegate.swift; sourceTree = "<group>"; };
 		E39C32C71C6C20B5001BF01B /* addCateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCateViewCell.swift; sourceTree = "<group>"; };
+		E3B66C531C78FAF1007965E9 /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3E2DCEE1C4C46F3006B3767 /* iMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E2DCF11C4C46F3006B3767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3E2DCF91C4C46F3006B3767 /* iMoney.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iMoney.xcdatamodel; sourceTree = "<group>"; };
@@ -97,11 +100,12 @@
 		E3E2DD311C4C471E006B3767 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E3E2DD471C4C4787006B3767 /* buyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buyList.swift; sourceTree = "<group>"; };
 		E3E2DD491C4C5048006B3767 /* addViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addViewController.swift; sourceTree = "<group>"; };
+		E3E630661C78F0570014FDDD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		E3E630681C78F0C50014FDDD /* SwitchSettingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchSettingViewCell.swift; sourceTree = "<group>"; };
 		E3EF15AF1C5C215700D7F9D1 /* Price+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Price+CoreDataProperties.swift"; path = "iMoney/Price+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3EF15B01C5C215700D7F9D1 /* Price.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Price.swift; path = iMoney/Price.swift; sourceTree = "<group>"; };
 		E3EF15B11C5C215700D7F9D1 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataProperties.swift"; path = "iMoney/Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3EF15B21C5C215700D7F9D1 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = iMoney/Category.swift; sourceTree = "<group>"; };
-		E3EF15B31C5C215700D7F9D1 /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Record+CoreDataProperties.swift"; path = "iMoney/Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3EF15B41C5C215700D7F9D1 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = iMoney/Record.swift; sourceTree = "<group>"; };
 		E3EF15B51C5C215700D7F9D1 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "iMoney/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E3EF15B61C5C215700D7F9D1 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = iMoney/Item.swift; sourceTree = "<group>"; };
@@ -157,17 +161,45 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E3E2DCE51C4C46F3006B3767 = {
+		E3B66C4E1C78FA24007965E9 /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
 				E3EF15AF1C5C215700D7F9D1 /* Price+CoreDataProperties.swift */,
 				E3EF15B01C5C215700D7F9D1 /* Price.swift */,
 				E3EF15B11C5C215700D7F9D1 /* Category+CoreDataProperties.swift */,
 				E3EF15B21C5C215700D7F9D1 /* Category.swift */,
-				E3EF15B31C5C215700D7F9D1 /* Record+CoreDataProperties.swift */,
+				E3B66C531C78FAF1007965E9 /* Record+CoreDataProperties.swift */,
 				E3EF15B41C5C215700D7F9D1 /* Record.swift */,
 				E3EF15B51C5C215700D7F9D1 /* Item+CoreDataProperties.swift */,
 				E3EF15B61C5C215700D7F9D1 /* Item.swift */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		E3B66C4F1C78FA56007965E9 /* addCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				E39C32C31C6C0E5F001BF01B /* addCateViewController.swift */,
+				E39C32C71C6C20B5001BF01B /* addCateViewCell.swift */,
+				E39C32C51C6C1471001BF01B /* addCateViewDelegate.swift */,
+				E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */,
+			);
+			name = addCategoryView;
+			sourceTree = "<group>";
+		};
+		E3B66C501C78FA7E007965E9 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				E3E630661C78F0570014FDDD /* SettingViewController.swift */,
+				E3E630681C78F0C50014FDDD /* SwitchSettingViewCell.swift */,
+			);
+			name = SettingView;
+			sourceTree = "<group>";
+		};
+		E3E2DCE51C4C46F3006B3767 = {
+			isa = PBXGroup;
+			children = (
+				E3B66C4E1C78FA24007965E9 /* ManagedObjects */,
 				E3E2DCF01C4C46F3006B3767 /* iMoney */,
 				E3E2DD081C4C46F3006B3767 /* iMoneyTests */,
 				E3E2DD131C4C46F3006B3767 /* iMoneyUITests */,
@@ -196,16 +228,14 @@
 				E35042B01C67ED3000786446 /* summaryCore.swift */,
 				E3E2DD001C4C46F3006B3767 /* Info.plist */,
 				E3E2DD491C4C5048006B3767 /* addViewController.swift */,
-				E39C32C31C6C0E5F001BF01B /* addCateViewController.swift */,
-				E39C32C71C6C20B5001BF01B /* addCateViewCell.swift */,
-				E39C32C51C6C1471001BF01B /* addCateViewDelegate.swift */,
 				E3E2DCF81C4C46F3006B3767 /* iMoney.xcdatamodeld */,
 				E35042AE1C67EB1700786446 /* SummaryViewController.swift */,
-				E39C32C11C6BE23F001BF01B /* DetailsViewController.swift */,
-				E35042B21C67EEDE00786446 /* ListTableViewCell.swift */,
 				E3F94D841C4F265200F37F2C /* SummaryTableViewCell.swift */,
+				E39C32C11C6BE23F001BF01B /* DetailsViewController.swift */,
 				E3F94D861C4F265B00F37F2C /* DetailTableViewCell.swift */,
-				E34035FD1C570CC000DB1D90 /* CategoryViewCell.swift */,
+				E35042B21C67EEDE00786446 /* ListTableViewCell.swift */,
+				E3B66C4F1C78FA56007965E9 /* addCategoryView */,
+				E3B66C501C78FA7E007965E9 /* SettingView */,
 				E3E2DD231C4C471E006B3767 /* SwiftSideslipLikeQQ */,
 			);
 			path = iMoney;
@@ -437,12 +467,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E39C32C61C6C1471001BF01B /* addCateViewDelegate.swift in Sources */,
-				E3EF15BB1C5C215700D7F9D1 /* Record+CoreDataProperties.swift in Sources */,
 				E3E2DCF21C4C46F3006B3767 /* AppDelegate.swift in Sources */,
 				E3EF15B91C5C215700D7F9D1 /* Category+CoreDataProperties.swift in Sources */,
 				E3EF15BA1C5C215700D7F9D1 /* Category.swift in Sources */,
+				E3E630671C78F0570014FDDD /* SettingViewController.swift in Sources */,
 				E3F94D871C4F265B00F37F2C /* DetailTableViewCell.swift in Sources */,
 				E3E2DCFA1C4C46F3006B3767 /* iMoney.xcdatamodeld in Sources */,
+				E3E630691C78F0C50014FDDD /* SwitchSettingViewCell.swift in Sources */,
 				E3EF15BE1C5C215700D7F9D1 /* Item.swift in Sources */,
 				E3F94D811C4D547800F37F2C /* MainTabBarController.swift in Sources */,
 				E34035FE1C570CC000DB1D90 /* CategoryViewCell.swift in Sources */,
@@ -460,6 +491,7 @@
 				E3E2DD361C4C471E006B3767 /* Common.swift in Sources */,
 				E39C32C81C6C20B5001BF01B /* addCateViewCell.swift in Sources */,
 				E3E2DD3A1C4C471E006B3767 /* LeftViewController.swift in Sources */,
+				E3B66C541C78FAF1007965E9 /* Record+CoreDataProperties.swift in Sources */,
 				E3E2DD371C4C471E006B3767 /* HomeViewController.swift in Sources */,
 				E3E2DD4A1C4C5048006B3767 /* addViewController.swift in Sources */,
 				E35042AF1C67EB1700786446 /* SummaryViewController.swift in Sources */,
