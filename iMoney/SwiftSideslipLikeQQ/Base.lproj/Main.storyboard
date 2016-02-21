@@ -663,7 +663,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BD3-WA-xUq">
-                                <rect key="frame" x="20" y="159" width="560" height="379"/>
+                                <rect key="frame" x="20" y="149" width="560" height="379"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="379" id="gbL-NB-q4o"/>
@@ -698,7 +698,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flu-G5-rio">
-                                <rect key="frame" x="35" y="548" width="30" height="30"/>
+                                <rect key="frame" x="35" y="538" width="30" height="30"/>
                                 <state key="normal" image="add">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -708,7 +708,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaN-1y-kzm">
-                                <rect key="frame" x="113" y="550" width="30" height="30"/>
+                                <rect key="frame" x="113" y="540" width="30" height="30"/>
                                 <state key="normal" image="setting">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -720,10 +720,11 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="BD3-WA-xUq" firstAttribute="trailing" secondItem="D9f-Z5-2j5" secondAttribute="trailingMargin" id="4ec-AF-Hdz"/>
-                            <constraint firstItem="flu-G5-rio" firstAttribute="top" secondItem="BD3-WA-xUq" secondAttribute="bottom" constant="10" id="8h5-FL-pbk"/>
-                            <constraint firstAttribute="bottom" secondItem="QaN-1y-kzm" secondAttribute="bottom" constant="20" symbolic="YES" id="CxJ-Gd-yIK"/>
+                            <constraint firstItem="flu-G5-rio" firstAttribute="top" secondItem="BD3-WA-xUq" secondAttribute="bottom" priority="750" constant="10" id="8h5-FL-pbk"/>
+                            <constraint firstAttribute="bottom" secondItem="QaN-1y-kzm" secondAttribute="bottom" constant="30" id="CxJ-Gd-yIK"/>
                             <constraint firstItem="BD3-WA-xUq" firstAttribute="leading" secondItem="D9f-Z5-2j5" secondAttribute="leadingMargin" id="FDk-4q-dTB"/>
                             <constraint firstItem="QaN-1y-kzm" firstAttribute="top" secondItem="BD3-WA-xUq" secondAttribute="bottom" constant="8" symbolic="YES" id="Nbf-bS-YTT"/>
+                            <constraint firstItem="ypj-qX-8pm" firstAttribute="top" secondItem="flu-G5-rio" secondAttribute="bottom" constant="28" id="dUY-RX-uyu"/>
                             <constraint firstItem="flu-G5-rio" firstAttribute="leading" secondItem="BD3-WA-xUq" secondAttribute="leading" constant="15" id="lNb-el-OC4"/>
                             <constraint firstItem="QaN-1y-kzm" firstAttribute="leading" secondItem="BD3-WA-xUq" secondAttribute="leading" constant="12" id="pJd-JW-t3z"/>
                             <constraint firstItem="QaN-1y-kzm" firstAttribute="leading" secondItem="flu-G5-rio" secondAttribute="trailing" constant="48" id="pnN-Nm-jBM"/>
@@ -733,6 +734,7 @@
                             <mask key="constraints">
                                 <exclude reference="Nbf-bS-YTT"/>
                                 <exclude reference="pJd-JW-t3z"/>
+                                <exclude reference="dUY-RX-uyu"/>
                             </mask>
                         </variation>
                     </view>

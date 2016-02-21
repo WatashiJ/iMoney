@@ -47,7 +47,7 @@ class buyList {
             return []
         }
     }
-    var categoryList: [iMoney.Category]?// All categories
+    var categoryList: Set<Category>?// All categories
 
     var namesOfCategories: [String] {// Get names of all categories
         var names = [String]()
@@ -176,7 +176,7 @@ class buyList {
             categoryList = []
             return
         }
-        categoryList = cates// Assign to the categoryList
+        categoryList = Set(cates!)// Assign to the categoryList
     }
     
     func summaryOf(category Category: String) -> NSDecimalNumber {// Count the summary of the category

@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "477690259.58463"
+            timestampString = "477761485.75386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "477692290.538962"
+            timestampString = "477761485.75386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215">
+            startingLineNumber = "211"
+            endingLineNumber = "211">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -712,11 +712,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "477692290.538962"
+            timestampString = "477761485.75386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234">
+            startingLineNumber = "230"
+            endingLineNumber = "230">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -726,11 +726,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "477692290.538962"
+            timestampString = "477761485.75386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "HomeViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -758,11 +758,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "477689825.791229"
+            timestampString = "477761485.75386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -774,11 +774,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "477692290.538962"
+            timestampString = "477761485.75386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "newItemDidAdd(_:editingMode:at:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -982,11 +982,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iMoney/SwiftSideslipLikeQQ/HomeViewController.swift"
-            timestampString = "477689825.791229"
+            timestampString = "477761485.75386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "numberOfSectionsInTableView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1069,6 +1069,134 @@
             endingLineNumber = "108"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iMoney/buyList.swift"
+            timestampString = "477761260.030853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "renewCategory()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iMoney/AppDelegate.swift"
+            timestampString = "477761467.917443"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "storeWillChange(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iMoney/AppDelegate.swift"
+            timestampString = "477761469.437591"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "storeDidChange(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iMoney.AppDelegate.storeDidChange (iMoney.AppDelegate)(__ObjC.NSNotification) -&gt; ()"
+                  moduleName = "iMoney"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cheng/Developer/Cocoa/iMoney/iMoney/AppDelegate.swift"
+                  timestampString = "477761486.806337"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iMoney.AppDelegate.(storeDidChange (iMoney.AppDelegate) -&gt; (__ObjC.NSNotification) -&gt; ()).(closure #1)"
+                  moduleName = "iMoney"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cheng/Developer/Cocoa/iMoney/iMoney/AppDelegate.swift"
+                  timestampString = "477761486.806764"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iMoney/AppDelegate.swift"
+            timestampString = "477761471.572298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "storeDidImportUbiquitousContentChanges(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iMoney.AppDelegate.storeDidImportUbiquitousContentChanges (iMoney.AppDelegate)(__ObjC.NSNotification) -&gt; ()"
+                  moduleName = "iMoney"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cheng/Developer/Cocoa/iMoney/iMoney/AppDelegate.swift"
+                  timestampString = "477761486.808"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iMoney.AppDelegate.(storeDidImportUbiquitousContentChanges (iMoney.AppDelegate) -&gt; (__ObjC.NSNotification) -&gt; ()).(closure #1)"
+                  moduleName = "iMoney"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cheng/Developer/Cocoa/iMoney/iMoney/AppDelegate.swift"
+                  timestampString = "477761486.808354"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

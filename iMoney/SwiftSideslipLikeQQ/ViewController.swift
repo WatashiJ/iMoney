@@ -112,10 +112,6 @@ class ViewController: UIViewController {
         let x = recongnizer.translationInView(self.view).x
         let trueDistance = distance + x // 实时距离
         let trueProportion = trueDistance / (Common.screenWidth*FullDistance)
-//        if x <= 0 && distance <= 0 {
-//            return
-//        }
-        
         // 如果 UIPanGestureRecognizer 结束，则激活自动停靠
         if recongnizer.state == UIGestureRecognizerState.Ended {
             if trueDistance > Common.screenWidth * (Proportion / 3) {

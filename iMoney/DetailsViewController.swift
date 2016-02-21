@@ -20,7 +20,7 @@ class DetailsViewController: UITableViewController {
         super.viewDidLoad()
 
         items = summaryDataSource.itemsByMonth(from: dateDuration.0, to: dateDuration.1)// Get all items from the time duration
-        categories = itemList.categoryList!// Find all categories
+        categories = Array(itemList.categoryList!)// Find all categories
     }
 
     override func didReceiveMemoryWarning() {

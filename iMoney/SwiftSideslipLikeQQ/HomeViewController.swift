@@ -131,11 +131,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            return
-        }
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
