@@ -28,15 +28,8 @@ class buyList {
         return all// Return
     }
     
-    var workingList: [iMoney.Item]? {
-        didSet {
-            if workingList != nil {
-                groupByDate(list: workingList!)
-            }
-        }
-    }// The items in the current category
-    var listWithDate: [NSDate: [iMoney.Item]]?
-    var dateForTheList: [NSDate] {
+    var listWithDate: [NSDate: [iMoney.Item]]?// Use to store all items and their date, easier to parse
+    var dateForTheList: [NSDate] {// Keys of list
         if listWithDate != nil {
             return Array(listWithDate!.keys).sort({ (date1, date2) -> Bool in
                 let duration1 = date1.timeIntervalSinceNow
@@ -66,13 +59,13 @@ class buyList {
     }
     
     init(at listName: String) {// Switch to a category, init.
-        workingList = Array()// working items
+        var workingList: [iMoney.Item] = Array()// working items
 
         // View by All
         if listName == "All" && allItem != nil {// If chose All, show all categories
             for key in Array(allItem!.keys) {// For all keys
                 if let content = allItem![key] {// Get the items
-                    workingList!.appendContentsOf(content)// Add to the workingList
+                    workingList.appendContentsOf(content)// Add to the workingList
                 }
             }
             return// End
@@ -86,7 +79,7 @@ class buyList {
                 return
             }
             workingList = items
-            groupByDate(list: workingList!)
+            groupByDate(list: workingList)
         } catch {// If error occurs
             print("No such category")
         }
@@ -131,7 +124,13 @@ class buyList {
     }
     
     func addItem(item: iMoney.Item) {// Add item
-        workingList?.append(item)// Add to the working List
+        guard let date = item.record?.date else { return }
+        if var list = listWithDate![date] {
+            list.append(item)
+            listWithDate![date] = list
+        } else {
+            listWithDate![date] = [item]
+        }
         saveContext()// save
     }
     
@@ -219,12 +218,25 @@ class buyList {
     }
     
     func deleteItem(item: iMoney.Item) {// Delete item
+        let date = item.record!.date!
+        guard let list = listWithDate?[date] else { return }
+        listWithDate![date] = list.filter { $0 != item }
         context.deleteObject(item)
         saveContext()
     }
     
+    func isEmpty(For section: Int) -> Bool {
+        let date = dateForTheList[section]
+        return listWithDate![date]!.isEmpty
+    }
+    
     func saveContext() {
         appDelegate.saveContext()
+    }
+    
+    subscript(section: Int) -> [iMoney.Item] {
+        let date = dateForTheList[section]
+        return listWithDate![date]!
     }
 }
 

@@ -12,10 +12,12 @@ import CoreData
 
 class Category: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
-
+    override var hashValue: Int {
+        return name?.hashValue ?? super.hashValue
+    }
+    
 }
 
-func == (left: iMoney.Category, right: iMoney.Category) -> Bool {
+func == (left: Category, right: Category) -> Bool {
     return left.name == right.name
 }

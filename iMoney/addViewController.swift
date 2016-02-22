@@ -36,7 +36,7 @@ class addViewController: UIViewController {
     var nameOfCate: [String]!
     
     var edit = false // Switch determing if it's adding new item or modifying existing item
-    var indexOfEditingItem: Int?// index of the modifying item
+    var indexOfEditingItem: (NSDate, Int)?// index of the modifying item
     
     // MARK: controller functions
     override func viewDidLoad() {
@@ -156,7 +156,7 @@ class addViewController: UIViewController {
 }
 // MARK: - Add View Delegate
 protocol addViewControllerDelegate: class {
-    func newItemDidAdd(item: iMoney.Item, editingMode: Bool, at index: Int?)
+    func newItemDidAdd(item: iMoney.Item, editingMode: Bool, at index: (NSDate, Int)?)
     // the working item, editingMode decides it's adding new item or modifying an existing one
     func addViewDidCancel()
 }

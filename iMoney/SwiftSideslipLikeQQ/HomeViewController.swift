@@ -68,22 +68,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.summaryLabel.text = "Summary of \(currentCate)"
             cell.moneyLabel.text = "$" + "\(itemList.summaryOf(category: currentCate) ?? 0)"
             return cell
-        } else if groupByDate == false {
-            guard let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as? DetailTableViewCell else {
-                let tempCell = UITableViewCell()
-                tempCell.textLabel?.text = (itemList.workingList![indexPath.row].name) ?? ""
-                return tempCell
-            }
-            cell.title = currentCate
-            cell.itemLabel.text = itemList.workingList![indexPath.row].name
-            let price = itemList.workingList![indexPath.row].totalPrice()
-            cell.moneyLabel.text = "$" + price
-            
-            return cell
         } else {
             guard let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as? DetailTableViewCell else {
                 let tempCell = UITableViewCell()
-                tempCell.textLabel?.text = (itemList.workingList![indexPath.row].name) ?? ""
+                tempCell.textLabel?.text = ""
                 return tempCell
             }
             cell.title = currentCate
@@ -102,25 +90,28 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         if section == 0 {
             return 1
-        } else if groupByDate == false {
-            return itemList.workingList?.count ?? 0
         } else {
-            let date = itemList.dateForTheList[section - 1]
-            return itemList.listWithDate![date]!.count ?? 0
+            return itemList[section - 1].count ?? 0
         }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section != 0 {
-//            return UITableViewAutomaticDimension
             return 57
         } else {
             return 77
         }
     }
+
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return groupByDate && !(section == 0) ? 30 : 0
+        if section == 0 {
+            return 0
+        }
+        if itemList[section - 1].isEmpty {
+            return 0
+        }
+        return groupByDate ? 30 : 0
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -157,14 +148,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: " Edit ") {
             [unowned self] (rowAction, indexPath) -> Void  in
-            let editItem = self.itemList.workingList![indexPath.row]
+            let editItem = self.itemList[indexPath.section - 1][indexPath.row]
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             self.performSegueWithIdentifier("addSegue", sender: editItem)
         }
         edit.backgroundColor = Common.commonColour
         let delete = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") {
             [unowned self] (rowAction, indexPath) -> Void in
-            guard let removeItem = self.itemList.workingList?.removeAtIndex(indexPath.row) else { return }
+            var list = self.itemList[indexPath.section - 1]
+            let removeItem = list.removeAtIndex(indexPath.row)
             self.itemList.deleteItem(removeItem)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             let summaryCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))! as! SummaryTableViewCell
@@ -186,7 +178,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 destinationVC.navigationItem.title = "New item"
                 if let item = sender as? iMoney.Item {
                     destinationVC.edit = true
-                    destinationVC.indexOfEditingItem = itemList.workingList?.indexOf(item)
+                    let date = item.record?.date!
+                    guard let list = itemList.listWithDate![date!], let index = list.indexOf(item) else { return }
+                    destinationVC.indexOfEditingItem = (date!, index)
                     destinationVC.count = item.record?.count ?? 1
                     destinationVC.name = item.name
                     destinationVC.date = item.record?.date
@@ -230,14 +224,15 @@ extension HomeViewController: addCateViewDelegate {
 
 
 extension HomeViewController: addViewControllerDelegate {
-    func newItemDidAdd(item: iMoney.Item, editingMode: Bool, at index: Int?) {
+    func newItemDidAdd(item: iMoney.Item, editingMode: Bool, at index: (NSDate, Int)?) {
         if editingMode == true {
-            if let deleteItem = itemList.workingList?.removeAtIndex(index!) {
+            guard let date = index?.0, let i = index?.1 else { return }
+            if let deleteItem = itemList.listWithDate?[date]?.removeAtIndex(i) {
                 itemList.deleteItem(deleteItem)
             }
         }
         if item.category?.name == currentCate {
-            itemList.workingList?.insert(item, atIndex: 0)
+            itemList.addItem(item)
         }
         itemList.saveContext()
         tableView.reloadData()
