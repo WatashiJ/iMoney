@@ -17,8 +17,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     private var itemList: buyList!
     
-    var currentCate: String {
-        set {
+    var currentCate: String { // Indication for category
+        set {// Information is synced with iCloud
             let userDefault = NSUbiquitousKeyValueStore.defaultStore()
             userDefault.setString(newValue, forKey: "currentCate")
             userDefault.synchronize()
@@ -32,7 +32,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    var groupByDate: Bool {
+    var groupByDate: Bool {// Indication for headers
         let userDefault = NSUbiquitousKeyValueStore.defaultStore()
         return userDefault.boolForKey("groupByDate")
     }
@@ -47,6 +47,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tapSwitchedNotification(notification: NSNotification) {
+        // When switch to summary view tab, disable the pan gesture
         panGesture.enabled = !panGesture.enabled
     }
 
@@ -59,7 +60,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Table View
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 {// Section 0 is always for summary
             guard let cell = tableView.dequeueReusableCellWithIdentifier("sumCell") as? SummaryTableViewCell else {
                 let tempCell = UITableViewCell()
                 tempCell.textLabel?.text = "ERROR!"
@@ -68,16 +69,27 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.summaryLabel.text = "Summary of \(currentCate)"
             cell.moneyLabel.text = "$" + "\(itemList.summaryOf(category: currentCate) ?? 0)"
             return cell
+        } else if groupByDate == true {
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as? DetailTableViewCell else {
+                let tempCell = UITableViewCell()
+                tempCell.textLabel?.text = ""
+                return tempCell
+            }
+            cell.title = currentCate// Title is here to set the icon
+            cell.itemLabel.text = itemList[indexPath.section - 1][indexPath.row].name
+            let price = itemList[indexPath.section - 1][indexPath.row].totalPrice()
+            cell.moneyLabel.text = "$" + price
+            
+            return cell
         } else {
             guard let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as? DetailTableViewCell else {
                 let tempCell = UITableViewCell()
                 tempCell.textLabel?.text = ""
                 return tempCell
             }
-            cell.title = currentCate
-            let date = itemList.dateForTheList[indexPath.section - 1]
-            cell.itemLabel.text = itemList.listWithDate![date]![indexPath.row].name
-            let price = itemList.listWithDate![date]![indexPath.row].totalPrice()
+            cell.title = currentCate// Title is here to set the icon
+            cell.itemLabel.text = itemList.workingList[indexPath.row].name
+            let price = itemList.workingList[indexPath.row].totalPrice()
             cell.moneyLabel.text = "$" + price
             
             return cell
@@ -90,8 +102,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         if section == 0 {
             return 1
-        } else {
+        } else if groupByDate == true {
             return itemList[section - 1].count ?? 0
+        } else {
+            return itemList.listWithDate?.values.count ?? 0
         }
     }
     
@@ -105,10 +119,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
+        if section == 0 || groupByDate == false {
             return 0
         }
-        if itemList[section - 1].isEmpty {
+        if itemList[section - 1].isEmpty {// If there's no row in this section, remove the header
             return 0
         }
         return groupByDate ? 30 : 0
@@ -126,14 +140,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if groupByDate == false {
+        if groupByDate == false {// If not group by date, only needs two sections
             return 2
         } else {
             guard let keysCount = itemList.listWithDate?.keys.count else { return 2 }
             return 1 + keysCount
         }
     }
-    
     
     // Override to support conditional editing of the table view.
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -148,14 +161,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: " Edit ") {
             [unowned self] (rowAction, indexPath) -> Void  in
-            let editItem = self.itemList[indexPath.section - 1][indexPath.row]
+            let editItem: iMoney.Item!
+            if self.groupByDate == true {
+                editItem = self.itemList[indexPath.section - 1][indexPath.row]
+            } else {
+                editItem = self.itemList.workingList[indexPath.row]
+            }
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             self.performSegueWithIdentifier("addSegue", sender: editItem)
         }
         edit.backgroundColor = Common.commonColour
         let delete = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") {
             [unowned self] (rowAction, indexPath) -> Void in
-            var list = self.itemList[indexPath.section - 1]
+            var list: [iMoney.Item]!
+            if self.groupByDate == true {
+                list = self.itemList[indexPath.section - 1]
+            } else {
+                list = self.itemList.workingList
+            }
             let removeItem = list.removeAtIndex(indexPath.row)
             self.itemList.deleteItem(removeItem)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

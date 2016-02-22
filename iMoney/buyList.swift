@@ -14,7 +14,8 @@ class buyList {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate// AppDelegate
     let context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext// Context
     
-    var allItem: [iMoney.Category: [iMoney.Item]]? {// All items
+    // MARK: Properties
+    lazy var allItem: [iMoney.Category: [iMoney.Item]]? = {// All items
         let catFetch = NSFetchRequest(entityName: "Category")
         guard let categories = try? self.context.executeFetchRequest(catFetch) as? [iMoney.Category] else {// Get all categories
             return nil
@@ -26,7 +27,7 @@ class buyList {
             }
         }
         return all// Return
-    }
+    }()
     
     var listWithDate: [NSDate: [iMoney.Item]]?// Use to store all items and their date, easier to parse
     var dateForTheList: [NSDate] {// Keys of list
@@ -39,6 +40,13 @@ class buyList {
         } else {
             return []
         }
+    }
+    var workingList:[iMoney.Item] {
+        var list: [iMoney.Item] = []
+        for date in dateForTheList {
+            list += listWithDate![date]!
+        }
+        return list
     }
     var categoryList: Set<Category>?// All categories
 
@@ -58,18 +66,9 @@ class buyList {
         return context.countForFetchRequest(fetch, error: nil)
     }
     
+    // MARK: Constructor
     init(at listName: String) {// Switch to a category, init.
         var workingList: [iMoney.Item] = Array()// working items
-
-        // View by All
-        if listName == "All" && allItem != nil {// If chose All, show all categories
-            for key in Array(allItem!.keys) {// For all keys
-                if let content = allItem![key] {// Get the items
-                    workingList.appendContentsOf(content)// Add to the workingList
-                }
-            }
-            return// End
-        }
         
         // View by categories
         let itemFetch = NSFetchRequest(entityName: "Item")// Category Name
@@ -90,9 +89,8 @@ class buyList {
         renewCategory()// Reparse all items in the category
     }
     
+    // MARK: Group
     private func groupByDate(list workingList: [iMoney.Item]) {
-        let userDefault = NSUbiquitousKeyValueStore.defaultStore()
-        guard userDefault.boolForKey("groupByDate") == true else { return }
         var dates = [NSDate]()
         if listWithDate == nil {
             listWithDate = Dictionary()
@@ -107,6 +105,7 @@ class buyList {
         }
     }
     
+    // MARK: Category
     func addCategory(by name: String) -> Bool? {// Add a category
         let checkRedundant = NSFetchRequest(entityName: "Category")// No category allows to have the same name with another one
         checkRedundant.predicate = NSPredicate(format: "name = \"\(name)\"")// Check
@@ -121,52 +120,6 @@ class buyList {
         saveContext()// Save
         renewCategory()// Renew the category list
         return true
-    }
-    
-    func addItem(item: iMoney.Item) {// Add item
-        guard let date = item.record?.date else { return }
-        if var list = listWithDate![date] {
-            list.append(item)
-            listWithDate![date] = list
-        } else {
-            listWithDate![date] = [item]
-        }
-        saveContext()// save
-    }
-    
-    func costOf(category cate: String, from start: NSDate, to end: NSDate) -> NSDecimalNumber {
-        let itemFetch = NSFetchRequest(entityName: "Item")// Category Name
-        itemFetch.predicate = NSPredicate(format: "(category.name = \"\(cate)\")AND(record.date >= %@)AND(record.date <= %@)", start, end)
-        do {
-            guard let items = try context.executeFetchRequest(itemFetch) as? [iMoney.Item] else {
-                return 0
-            }
-            var sum = NSDecimalNumber(integer: 0)
-            for item in items {// For each item
-                if item.price != nil && item.record != nil {
-                    let count = item.record!.count// NSNumber to NSDecimalNumber
-                    let cost = item.price!.price!.decimalNumberByMultiplyingBy(count!)// Unit price * count
-                    sum = sum.decimalNumberByAdding(cost) // Total price instead of single price
-                }
-            }
-            return sum
-        } catch {
-            return 0
-        }
-    }
-    
-    func searchItem(by name: String) -> iMoney.Item? {// Search items from db
-        let fetch = NSFetchRequest(entityName: "Item")
-        fetch.predicate = NSPredicate(format: "name CONTAINS[cd] \"\(name)\"")// fuzzy search
-        do {
-            let item = try context.executeFetchRequest(fetch) as! [iMoney.Item]
-            if item.isEmpty {
-                return nil
-            }
-            return item[0]
-        } catch {
-            return nil
-        }
     }
     
     private func renewCategory() {// Refresh category array, used when category is updated
@@ -217,29 +170,78 @@ class buyList {
         saveContext()// Save
     }
     
+    // MARK: Item
+    func addItem(item: iMoney.Item) {// Add item
+        guard let date = item.record?.date else { return }
+        if var list = listWithDate![date] {
+            list.append(item)
+            listWithDate![date] = list
+        } else {
+            listWithDate![date] = [item]
+        }
+        saveContext()// save
+    }
+    
+    func costOf(category cate: String, from start: NSDate, to end: NSDate) -> NSDecimalNumber {
+        let itemFetch = NSFetchRequest(entityName: "Item")// Category Name
+        itemFetch.predicate = NSPredicate(format: "(category.name = \"\(cate)\")AND(record.date >= %@)AND(record.date <= %@)", start, end)
+        do {
+            guard let items = try context.executeFetchRequest(itemFetch) as? [iMoney.Item] else {
+                return 0
+            }
+            var sum = NSDecimalNumber(integer: 0)
+            for item in items {// For each item
+                if item.price != nil && item.record != nil {
+                    let count = item.record!.count// NSNumber to NSDecimalNumber
+                    let cost = item.price!.price!.decimalNumberByMultiplyingBy(count!)// Unit price * count
+                    sum = sum.decimalNumberByAdding(cost) // Total price instead of single price
+                }
+            }
+            return sum
+        } catch {
+            return 0
+        }
+    }
+    
+    func searchItem(by name: String) -> iMoney.Item? {// Search items from db
+        let fetch = NSFetchRequest(entityName: "Item")
+        fetch.predicate = NSPredicate(format: "name CONTAINS[cd] \"\(name)\"")// fuzzy search
+        do {
+            let item = try context.executeFetchRequest(fetch) as! [iMoney.Item]
+            if item.isEmpty {
+                return nil
+            }
+            return item[0]
+        } catch {
+            return nil
+        }
+    }
+    
     func deleteItem(item: iMoney.Item) {// Delete item
         let date = item.record!.date!
         guard let list = listWithDate?[date] else { return }
-        listWithDate![date] = list.filter { $0 != item }
+        let result = list.filter { $0 != item }
+        if result.isEmpty {
+            listWithDate?.removeValueForKey(date)
+        } else {
+            listWithDate![date] = result
+        }
         context.deleteObject(item)
         saveContext()
-    }
-    
-    func isEmpty(For section: Int) -> Bool {
-        let date = dateForTheList[section]
-        return listWithDate![date]!.isEmpty
-    }
-    
-    func saveContext() {
-        appDelegate.saveContext()
     }
     
     subscript(section: Int) -> [iMoney.Item] {
         let date = dateForTheList[section]
         return listWithDate![date]!
     }
+    // MARK: Save
+    func saveContext() {
+        appDelegate.saveContext()
+    }
 }
 
+
+// EXtension
 extension NSDate {
     func startOfTheMonth() -> NSDate {// Get the first day of the month
         let calendar = NSCalendar.currentCalendar()// Calendar
