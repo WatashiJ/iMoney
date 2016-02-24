@@ -32,11 +32,12 @@ class buyList {
     var listWithDate: [NSDate: [iMoney.Item]]?// Use to store all items and their date, easier to parse
     var dateForTheList: [NSDate] {// Keys of list
         if listWithDate != nil {
-            return Array(listWithDate!.keys).sort({ (date1, date2) -> Bool in
+            return Array(listWithDate!.keys).sort {
+                (date1, date2) -> Bool in
                 let duration1 = date1.timeIntervalSinceNow
                 let duration2 = date2.timeIntervalSinceNow
                 return duration1 > duration2
-            })
+            }
         } else {
             return []
         }
@@ -72,7 +73,7 @@ class buyList {
         
         // View by categories
         let itemFetch = NSFetchRequest(entityName: "Item")// Category Name
-        itemFetch.predicate = NSPredicate(format: "(category.name = \"\(listName)\")AND(record.date >= %@)AND(record.date <= %@)", NSDate().startOfTheMonth(), NSDate().endOfTheMonth())// Search for items in the category and must be in this month
+        itemFetch.predicate = NSPredicate(format: "(category.name = \"\(listName)\")AND(record.date >= %@)AND(record.date < %@)", NSDate().startOfTheMonth(), NSDate().endOfTheMonth())// Search for items in the category and must be in this month
         do {
             guard let items = try context.executeFetchRequest(itemFetch) as? [iMoney.Item] else {
                 return
@@ -184,7 +185,7 @@ class buyList {
     
     func costOf(category cate: String, from start: NSDate, to end: NSDate) -> NSDecimalNumber {
         let itemFetch = NSFetchRequest(entityName: "Item")// Category Name
-        itemFetch.predicate = NSPredicate(format: "(category.name = \"\(cate)\")AND(record.date >= %@)AND(record.date <= %@)", start, end)
+        itemFetch.predicate = NSPredicate(format: "(category.name = \"\(cate)\")AND(record.date >= %@)AND(record.date < %@)", start, end)
         do {
             guard let items = try context.executeFetchRequest(itemFetch) as? [iMoney.Item] else {
                 return 0

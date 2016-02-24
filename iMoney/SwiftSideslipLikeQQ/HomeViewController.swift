@@ -105,7 +105,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else if groupByDate == true {
             return itemList[section - 1].count ?? 0
         } else {
-            return itemList.listWithDate?.values.count ?? 0
+            return itemList.workingList.count ?? 0
         }
     }
     

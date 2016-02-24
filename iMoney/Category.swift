@@ -12,10 +12,6 @@ import CoreData
 
 class Category: NSManagedObject {
 
-    override var hashValue: Int {
-        return name?.hashValue ?? super.hashValue
-    }
-    
 }
 
 func == (left: Category, right: Category) -> Bool {
